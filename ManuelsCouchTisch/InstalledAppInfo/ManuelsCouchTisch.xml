@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ss:ApplicationInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ss="http://schemas.microsoft.com/Surface/2007/ApplicationMetadata">
+  <Application>
+    <Title>Manuels Couch Tisch</Title>
+    <Description>Couch Tisch App for playing around with the SUR40.</Description>
+    <ExecutableFile>manuelscouchtisch.exe</ExecutableFile>
+    <Arguments></Arguments>
+    <IconImageFile>InstalledAppInfo\AppIcon.png</IconImageFile>   
+    <Tags>
+      <Tag Value="0xC0">
+        <!-- There is no "Launch" entry inside the "Actions" element because we do not want this
+        tag to be used to launch the ControlsBox application using object routing.
+        We register the tag to prevent object routing from appearing while the tag "0xC0" is used 
+        in this application even if other applications have registered for object routing on that 
+        same tag. -->
+        <Actions/>
+      </Tag>
+    </Tags>
+  </Application>
+</ss:ApplicationInfo>
