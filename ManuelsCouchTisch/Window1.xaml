@@ -15,150 +15,8 @@
 
 		<s:SurfaceListBox Name="ContentSelector" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="43,0,0,0" SelectionChanged="OnSelectionChanged" >
 
-			<!-- SurfaceButton -->
-			<s:SurfaceListBoxItem>
-				<s:SurfaceListBoxItem.Tag>
-					<Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-						<s:SurfaceButton Width="184" HorizontalAlignment="Center" VerticalAlignment="Center">SurfaceButton</s:SurfaceButton>
-					</Grid>
-				</s:SurfaceListBoxItem.Tag>
-				SurfaceButton
-			</s:SurfaceListBoxItem>
-
-			<!-- SurfaceToggleButton -->
-			<s:SurfaceListBoxItem>
-				<s:SurfaceListBoxItem.Tag>
-					<Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-						<s:SurfaceToggleButton HorizontalAlignment="Center" VerticalAlignment="Center">SurfaceToggleButton</s:SurfaceToggleButton>
-					</Grid>
-				</s:SurfaceListBoxItem.Tag>
-				SurfaceToggleButton
-			</s:SurfaceListBoxItem>
-
-			<!-- SurfaceCheckBox -->
-			<s:SurfaceListBoxItem>
-				<s:SurfaceListBoxItem.Tag>
-					<Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-						<s:SurfaceCheckBox HorizontalAlignment="Center" VerticalAlignment="Center" >SurfaceCheckBox</s:SurfaceCheckBox>
-					</Grid>
-				</s:SurfaceListBoxItem.Tag>
-				SurfaceCheckBox
-			</s:SurfaceListBoxItem>
-
-			<!-- SurfaceRadioButton -->
-			<s:SurfaceListBoxItem>
-				<s:SurfaceListBoxItem.Tag>
-					<Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="76">
-						<s:SurfaceRadioButton HorizontalAlignment="Center" VerticalAlignment="Top" >SurfaceRadioButton</s:SurfaceRadioButton>
-						<s:SurfaceRadioButton HorizontalAlignment="Center" VerticalAlignment="Bottom" >SurfaceRadioButton</s:SurfaceRadioButton>
-					</Grid>
-				</s:SurfaceListBoxItem.Tag>
-				SurfaceRadioButton
-			</s:SurfaceListBoxItem>
-
-			<!-- SurfaceSlider -->
-			<s:SurfaceListBoxItem>
-				<s:SurfaceListBoxItem.Tag>
-					<Grid Height="71" Width="308" HorizontalAlignment="Center" VerticalAlignment="Center">
-						<s:SurfaceSlider VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-					</Grid>
-				</s:SurfaceListBoxItem.Tag>
-				SurfaceSlider
-			</s:SurfaceListBoxItem>
-
-			<!-- SurfaceScrollViewer -->
-			<s:SurfaceListBoxItem>
-				<s:SurfaceListBoxItem.Tag>
-					<Grid Height="308" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center">
-						<s:SurfaceScrollViewer>
-							<StackPanel Background="{DynamicResource {x:Static s:SurfaceColors.ListBoxBackgroundBrushKey}}">
-								<Label  Content="{x:Static Resources:Resources.Item_1}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_2}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_3}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_4}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_5}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_6}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_7}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_8}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_9}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_10}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_11}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_12}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_13}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_14}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_15}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_16}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_17}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_18}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_19}"/>
-								<Label  Content="{x:Static Resources:Resources.Item_20}"/>
-							</StackPanel>
-						</s:SurfaceScrollViewer>
-					</Grid>
-				</s:SurfaceListBoxItem.Tag>
-				SurfaceScrollViewer
-			</s:SurfaceListBoxItem>
-
-			<!-- Surface Text Input Controls -->
-			<s:SurfaceListBoxItem Content="{x:Static Resources:Resources.TextInputControls}">
-				<s:SurfaceListBoxItem.Tag>
-					<!-- Place the text controls so the keyboard won't cover them up -->
-					<Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition/>
-							<ColumnDefinition Width="7"/>
-							<ColumnDefinition/>
-						</Grid.ColumnDefinitions>
-						<StackPanel Grid.Column="0" Orientation="Vertical">
-							<Label >SurfaceTextBox</Label>
-							<s:SurfaceTextBox Width="200" Margin="7,0,10,10"/>
-						</StackPanel>
-						<StackPanel Grid.Column="2" Orientation="Vertical">
-							<Label >SurfacePasswordBox</Label>
-							<s:SurfacePasswordBox Width="200" Margin="7,0,10,10"/>
-						</StackPanel>
-					</Grid>
-				</s:SurfaceListBoxItem.Tag>
-			</s:SurfaceListBoxItem>
-
-			<!-- SurfaceInkCanvas -->
-			<s:SurfaceListBoxItem>
-				<s:SurfaceListBoxItem.Tag>
-					<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-						<Grid.RowDefinitions>
-							<RowDefinition Height="0.85*" />
-							<RowDefinition Height="0.15*" />
-						</Grid.RowDefinitions>
-						<s:SurfaceInkCanvas Grid.Row="0" Name="SampleInkCanvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-							<s:SurfaceInkCanvas.DefaultDrawingAttributes>
-								<DrawingAttributes Color="#FF808080"/>
-							</s:SurfaceInkCanvas.DefaultDrawingAttributes>
-						</s:SurfaceInkCanvas>
-						<s:SurfaceButton Grid.Row="1"  Height="38" Width="184" HorizontalAlignment="Center" VerticalAlignment="Top" Click="OnInkCanvasClearClick" Content="{x:Static Resources:Resources.Clear}" />
-					</Grid>
-				</s:SurfaceListBoxItem.Tag>
-				SurfaceInkCanvas
-			</s:SurfaceListBoxItem>
-
-			<!-- ScatterView -->
-			<s:SurfaceListBoxItem>
-				<s:SurfaceListBoxItem.Tag>
-					<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-						<s:ScatterView HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-							<s:ScatterViewItem Height="186" Width="308" FontSize="20" Padding="7,0,10,10"
-                                Content="{x:Static Resources:Resources.LargeItem}"/>
-							<!-- "Large Item" -->
-							<s:ScatterViewItem FontSize="20" Padding="7,0,10,10">ScatterViewItem</s:ScatterViewItem>
-							<s:ScatterViewItem FontSize="20" Width="482" Padding="7,0,10,10" Content="{x:Static Resources:Resources.MaximumDefaultSize}"/>
-
-							<!-- "The maximum default size is 20% of the size of the parent ScatterView" />-->
-							<s:ScatterViewItem></s:ScatterViewItem>
-						</s:ScatterView>
-					</Grid>
-				</s:SurfaceListBoxItem.Tag>
-				ScatterView
-			</s:SurfaceListBoxItem>
-
+			
+			
 			<!-- Surface Library Controls -->
 			<s:SurfaceListBoxItem>
 				<s:SurfaceListBoxItem.Tag>
@@ -227,6 +85,8 @@
 				Surface Library Controls
 			</s:SurfaceListBoxItem>
 
+			
+			
 			<!-- Surface Library Containers -->
 			<s:SurfaceListBoxItem>
 				<s:SurfaceListBoxItem.Tag>
@@ -305,6 +165,8 @@
 				Surface Library Containers
 			</s:SurfaceListBoxItem>
 
+			
+			
 			<!-- ElementMenu -->
 			<s:SurfaceListBoxItem>
 				<s:SurfaceListBoxItem.Tag>
@@ -436,27 +298,32 @@
 				ElementMenu
 			</s:SurfaceListBoxItem>
 
+			
+			
 			<!-- TagVisualizer, visible based on hardware capabilities -->
 			<s:SurfaceListBoxItem x:Name="TagVisualizerItem">
 				<s:SurfaceListBoxItem.Tag>
 					<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 						<s:TagVisualizer Name="Visualizer" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
 							<s:TagVisualizer.Definitions>
+								<s:TagVisualizationDefinition Value="0x00" TagRemovedBehavior="Fade" Source="TagVisual.xaml"/>
+								<s:TagVisualizationDefinition Value="0x01" TagRemovedBehavior="Fade" Source="TagVisual.xaml"/>
 								<s:TagVisualizationDefinition Value="0xC0" TagRemovedBehavior="Fade" Source="TagVisual.xaml"/>
 							</s:TagVisualizer.Definitions>
 						</s:TagVisualizer>
-						<Label IsHitTestVisible="false" HorizontalAlignment="Center" VerticalAlignment="Center"
-						Content="{x:Static Resources:Resources.PlaceTagHere}"/>
+						<Label IsHitTestVisible="false" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Static Resources:Resources.PlaceTagHere}"/>
 						<!-- "Place tag 0xC0 here." -->
 					</Grid>
 				</s:SurfaceListBoxItem.Tag>
 				TagVisualizer
 			</s:SurfaceListBoxItem>
 
+			
+			
+			
 		</s:SurfaceListBox>
 
-		<Grid   Grid.Column="1" Background="Transparent" Name="ContentArea" Margin="7">
-			<s:SurfaceButton Width="184" HorizontalAlignment="Center" VerticalAlignment="Center" Click="HelloWorldClick">Hello World</s:SurfaceButton>
+		<Grid Grid.Column="1" Background="Transparent" Name="ContentArea" Margin="7">
 		</Grid>
 	</Grid>
 </s:SurfaceWindow>

@@ -128,10 +128,10 @@ namespace ControlsBox
 		/// </summary>
 		private void UpdateContentSelector()
 		{
-			//TagVisualizerItem.Visibility =
-			//	InteractiveSurface.PrimarySurfaceDevice.IsTagRecognitionSupported
-			//		? Visibility.Visible
-			//		: Visibility.Collapsed;
+			TagVisualizerItem.Visibility =
+				InteractiveSurface.PrimarySurfaceDevice.IsTagRecognitionSupported
+					? Visibility.Visible
+					: Visibility.Collapsed;
 		}
 
 		/// <summary>
@@ -156,16 +156,6 @@ namespace ControlsBox
 		}
 
 		/// <summary>
-		/// Clear the strokes from the InkCanvas.
-		/// </summary>
-		/// <param name="sender">The object that raised the event.</param>
-		/// <param name="e">The event args.</param>
-		private void OnInkCanvasClearClick(object sender, RoutedEventArgs e)
-		{
-			//SampleInkCanvas.Strokes.Clear();
-		}
-
-		/// <summary>
 		/// Setup command message
 		/// </summary>
 		private void SetupCommandMessage()
@@ -181,7 +171,7 @@ namespace ControlsBox
 		/// <param name="args"></param>
 		private void ShowMessage(object sender, ExecutedRoutedEventArgs args)
 		{
-			//textMessage.Text = args.Parameter + " Clicked";
+			textMessage.Text = args.Parameter + " Clicked";
 		}
 
 		/// <summary>
@@ -219,11 +209,5 @@ namespace ControlsBox
 			view2.GroupDescriptions.Add(new PropertyGroupDescription("GroupName"));
 			libraryContainer2.ItemsSource = view2;
 		}
-
-		private void HelloWorldClick(object sender, RoutedEventArgs e)
-		{
-			MessageBox.Show("hello world ;)");
-		}
-
 	}
 }
