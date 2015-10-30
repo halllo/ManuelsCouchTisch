@@ -18,7 +18,12 @@ namespace ManuelsCouchTisch
 
 		public static readonly List<Brush> AllColors = new List<Brush>
 		{
-			Brushes.LimeGreen, Brushes.Pink, Brushes.Blue, Brushes.Red, Brushes.Green, Brushes.Purple,
+			Brushes.Red,
+			Brushes.Green,
+			Brushes.Blue,
+			Brushes.Lime,
+			Brushes.DeepPink,
+			Brushes.DarkGray,
 		};
 
 		public Dictionary<long, Data> Tags = new Dictionary<long, Data>

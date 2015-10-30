@@ -34,7 +34,6 @@
                     <s:TagVisualizationDefinition Value="0x03" TagRemovedBehavior="Fade" Source="TagVisual.xaml"/>
                     <s:TagVisualizationDefinition Value="0x04" TagRemovedBehavior="Fade" Source="TagVisual.xaml"/>
                     <s:TagVisualizationDefinition Value="0x05" TagRemovedBehavior="Fade" Source="TagVisual.xaml"/>
-                    <s:TagVisualizationDefinition Value="0xC0" TagRemovedBehavior="Fade" Source="TagVisual.xaml"/>
                 </s:TagVisualizer.Definitions>
 
                 <s:ScatterView HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

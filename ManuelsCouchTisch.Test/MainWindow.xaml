@@ -97,12 +97,18 @@
 
                 <local:NamenUndFarbenView x:Name="namenUndFarben"/>
 
-                <local:TagVisualCircle x:Name="tag01"/>
-                <local:TagVisualCircle x:Name="tag02"/>
+
+                <s:ScatterViewItem Width="200" Height="200">
+                    <local:TagVisual x:Name="tag01"/>
+                </s:ScatterViewItem>
+
+
+                <s:ScatterViewItem Width="200" Height="200">
+                    <local:TagVisual x:Name="tag02"/>
+                </s:ScatterViewItem>
 
 
             </s:ScatterView>
         </Grid>
-
     </Grid>
 </Window>

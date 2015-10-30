@@ -88,8 +88,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\ManuelsCouchTisch\TagVisualCircle.xaml">
-      <Link>TagVisualCircle.xaml</Link>
+    <Page Include="..\ManuelsCouchTisch\TagVisual.xaml">
+      <Link>TagVisual.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -106,14 +106,11 @@
     <Compile Include="..\ManuelsCouchTisch\NamenUndFarbenView.xaml.cs">
       <Link>NamenUndFarbenView.xaml.cs</Link>
     </Compile>
-    <Compile Include="..\ManuelsCouchTisch\Resources\Resources.Designer.cs">
-      <Link>Resources\Resources.Designer.cs</Link>
-    </Compile>
     <Compile Include="..\ManuelsCouchTisch\TagManagement.cs">
       <Link>TagManagement.cs</Link>
     </Compile>
-    <Compile Include="..\ManuelsCouchTisch\TagVisualCircle.xaml.cs">
-      <Link>TagVisualCircle.xaml.cs</Link>
+    <Compile Include="..\ManuelsCouchTisch\TagVisual.xaml.cs">
+      <Link>TagVisual.xaml.cs</Link>
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\ViewModel.cs">
       <Link>ViewModel.cs</Link>
@@ -136,12 +133,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="..\ManuelsCouchTisch\Resources\Resources.es.resx">
-      <Link>Resources\Resources.es.resx</Link>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\ManuelsCouchTisch\Resources\Resources.resx">
-      <Link>Resources\Resources.resx</Link>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
