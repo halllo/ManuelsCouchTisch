@@ -1,65 +1,49 @@
+using Microsoft.Surface;
 using System;
 using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Input;
 using System.ComponentModel;
-using Microsoft.Surface;
-using Microsoft.Surface.Presentation;
-using Microsoft.Surface.Presentation.Input;
-using Microsoft.Surface.Presentation.Controls;
+using System.Windows.Data;
 
-namespace ControlsBox
+namespace ManuelsCouchTisch
 {
-	/// <summary>
-	/// Interaction logic for Window1.xaml
-	/// </summary>
-	public partial class Window1 : SurfaceWindow
+	public partial class Window1
 	{
-		private readonly ObservableCollection<ImageInfo> images = new ObservableCollection<ImageInfo>();
-		private readonly ObservableCollection<ImageInfo> images2 = new ObservableCollection<ImageInfo>();
-
-		public static readonly RoutedCommand ShowMessageCommand = new RoutedCommand("ShowMessage", typeof(Window1));
-
-		/// <summary>
-		/// Default constructor.
-		/// </summary>
 		public Window1()
 		{
 			InitializeComponent();
 
-			// Add handlers for window availability events
 			AddWindowAvailabilityHandlers();
 
-			// insert images for the library containers
 			SetupLibraryContainerImages();
 
-			// listen for changes to the primary InteractiveSurfaceDevice.
-			InteractiveSurface.PrimarySurfaceDevice.Changed += OnPrimarySurfaceDeviceChanged;
 
-			// Update the content selector ListBox.
-			UpdateContentSelector();
 
-			// Initialize the routed command for element menu
-			SetupCommandMessage();
-		}
 
-		/// <summary>
-		/// Occurs when the window is about to close. 
-		/// </summary>
-		/// <param name="e"></param>
+
+			TagManagement.Instance.Value.OnShowDemo += () =>
+			{
+				var v = libraryContainer1ScatterViewItem.Visibility == System.Windows.Visibility.Visible ? System.Windows.Visibility.Collapsed : System.Windows.Visibility.Visible;
+                libraryContainer1ScatterViewItem.Visibility = v;
+				libraryContainer2ScatterViewItem.Visibility = v;
+			};
+			libraryContainer1ScatterViewItem.Visibility = System.Windows.Visibility.Collapsed;
+			libraryContainer2ScatterViewItem.Visibility = System.Windows.Visibility.Collapsed;
+
+			TagManagement.Instance.Value.OnShowAdmin += () =>
+			{
+				namenUndFarben.ViewModel.WindowVisible = System.Windows.Visibility.Visible;
+			};
+			namenUndFarben.ViewModel.WindowVisible = System.Windows.Visibility.Collapsed;
+        }
+
 		protected override void OnClosed(EventArgs e)
 		{
 			base.OnClosed(e);
-
-			// Stop listening for InteractiveSurfaceDevice changes when the window closes.
-			InteractiveSurface.PrimarySurfaceDevice.Changed -= OnPrimarySurfaceDeviceChanged;
-
-			// Remove handlers for window availability events
+			
 			RemoveWindowAvailabilityHandlers();
 		}
 
+		#region window availability handlers
 		/// <summary>
 		/// Adds handlers for window availability events.
 		/// </summary>
@@ -113,70 +97,12 @@ namespace ControlsBox
 		{
 			//TODO: disable audio, animations here
 		}
+		#endregion
 
-		/// <summary>
-		/// Update the content selector ListBox in the handler.
-		/// </summary>
-		private void OnPrimarySurfaceDeviceChanged(object sender, DeviceChangedEventArgs e)
-		{
-			UpdateContentSelector();
-		}
 
-		/// <summary>
-		/// Change the visibility of the TagVisualizer item based or whether Byte Tags are supported
-		/// by the primary InteractiveSurfaceDevice or not.
-		/// </summary>
-		private void UpdateContentSelector()
-		{
-			TagVisualizerItem.Visibility =
-				InteractiveSurface.PrimarySurfaceDevice.IsTagRecognitionSupported
-					? Visibility.Visible
-					: Visibility.Collapsed;
-		}
 
-		/// <summary>
-		/// Change the content of the display area to show the newly selected control.
-		/// </summary>
-		/// <param name="sender">The object that raised the event.</param>
-		/// <param name="e">The event args.</param>
-		private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			SurfaceListBoxItem selectedItem = (SurfaceListBoxItem)ContentSelector.SelectedItem;
-			Grid content = selectedItem.Tag as Grid;
-			if (content != null)
-			{
-				foreach (SurfaceDragCursor cursor in SurfaceDragDrop.GetAllCursors(this))
-				{
-					SurfaceDragDrop.CancelDragDrop(cursor);
-				}
-
-				ContentArea.Children.Clear();
-				ContentArea.Children.Add(content);
-			}
-		}
-
-		/// <summary>
-		/// Setup command message
-		/// </summary>
-		private void SetupCommandMessage()
-		{
-			CommandBinding showMessage = new CommandBinding(ShowMessageCommand, ShowMessage, null);
-			this.CommandBindings.Add(showMessage);
-		}
-
-		/// <summary>
-		/// Display the Element Menu Item that is clicked
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="args"></param>
-		private void ShowMessage(object sender, ExecutedRoutedEventArgs args)
-		{
-			textMessage.Text = args.Parameter + " Clicked";
-		}
-
-		/// <summary>
-		/// Add image and group name items to the image collection lists.
-		/// </summary>
+		readonly ObservableCollection<ImageInfo> images = new ObservableCollection<ImageInfo>();
+		readonly ObservableCollection<ImageInfo> images2 = new ObservableCollection<ImageInfo>();
 		private void SetupLibraryContainerImages()
 		{
 			string[] groups = { "Blue", "Green", "Orange", "Rhodamine" };

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Media.Imaging;
 
-namespace ControlsBox
+namespace ManuelsCouchTisch
 {   
     /// <summary>
     /// Simplest data type example, just shows a group name and an image

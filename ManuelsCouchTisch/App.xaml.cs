@@ -1,4 +1,4 @@
-namespace ControlsBox
+namespace ManuelsCouchTisch
 {
     /// <summary>
     /// Interaction logic for App.xaml

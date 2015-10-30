@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="ManuelsCouchTisch.ColorChooser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:s="http://schemas.microsoft.com/surface/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <Grid>
+        <StackPanel Orientation="Horizontal" x:Name="ColorStack">
+            <s:SurfaceButton Background="White" Click="ColorChoosen" Margin="0" />
+            <s:SurfaceButton Background="Black" Click="ColorChoosen" Margin="0" />
+        </StackPanel>
+    </Grid>
+</UserControl>
+

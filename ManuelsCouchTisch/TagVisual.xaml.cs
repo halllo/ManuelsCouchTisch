@@ -1,22 +1,15 @@
-﻿using System.Windows;
-using Microsoft.Surface.Presentation.Controls;
+﻿using Microsoft.Surface.Presentation.Input;
+using System.Windows;
 
-namespace ControlsBox
+namespace ManuelsCouchTisch
 {
-	/// <summary>
-	/// Interaction logic for TagVisual.xaml
-	/// </summary>
-	public partial class TagVisual : TagVisualization
+	public partial class TagVisual
 	{
 		public TagVisual()
 		{
 			InitializeComponent();
-		}
-
-		private void TagVisual_Loaded(object sender, RoutedEventArgs e)
-		{
-			this.halloWeltTextBox.Text = this.VisualizedTag.Value.ToString();
-			//TODO: customize TagVisualization1's UI based on this.VisualizedTag here
+			
+			Loaded += (s, e) => circle.ViewModel.TagAvailable(VisualizedTag);
 		}
 	}
 }

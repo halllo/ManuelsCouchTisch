@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F6D10438-7EA1-4A58-A182-6C7A2BFF0EAC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ManuelsCouchTisch.Test</RootNamespace>
+    <AssemblyName>ManuelsCouchTisch.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Surface">
+      <HintPath>..\LIB\Microsoft.Surface.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Surface.Core">
+      <HintPath>..\LIB\Microsoft.Surface.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Surface.HidSupport">
+      <HintPath>..\LIB\Microsoft.Surface.HidSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Surface.NativeWrappers">
+      <HintPath>..\LIB\Microsoft.Surface.NativeWrappers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Surface.Presentation">
+      <HintPath>..\LIB\Microsoft.Surface.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Surface.Presentation.Generic">
+      <HintPath>..\LIB\Microsoft.Surface.Presentation.Generic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="..\ManuelsCouchTisch\ColorChooser.xaml">
+      <Link>ColorChooser.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\ManuelsCouchTisch\NamenUndFarbenView.xaml">
+      <Link>NamenUndFarbenView.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\ManuelsCouchTisch\Shared\LibraryControlResourceDictionary.xaml">
+      <Link>Shared\LibraryControlResourceDictionary.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\ManuelsCouchTisch\TagVisualCircle.xaml">
+      <Link>TagVisualCircle.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\ManuelsCouchTisch\ColorChooser.xaml.cs">
+      <Link>ColorChooser.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\ManuelsCouchTisch\ImageInfo.cs">
+      <Link>ImageInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\ManuelsCouchTisch\NamenUndFarbenView.xaml.cs">
+      <Link>NamenUndFarbenView.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\ManuelsCouchTisch\Resources\Resources.Designer.cs">
+      <Link>Resources\Resources.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\ManuelsCouchTisch\TagManagement.cs">
+      <Link>TagManagement.cs</Link>
+    </Compile>
+    <Compile Include="..\ManuelsCouchTisch\TagVisualCircle.xaml.cs">
+      <Link>TagVisualCircle.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\ManuelsCouchTisch\ViewModel.cs">
+      <Link>ViewModel.cs</Link>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="..\ManuelsCouchTisch\Resources\Resources.es.resx">
+      <Link>Resources\Resources.es.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\ManuelsCouchTisch\Resources\Resources.resx">
+      <Link>Resources\Resources.resx</Link>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\add.png">
+      <Link>Resources\Icons\add.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\adjust color.png">
+      <Link>Resources\Icons\adjust color.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\attach.png">
+      <Link>Resources\Icons\attach.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\bookmark - add.png">
+      <Link>Resources\Icons\bookmark - add.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\bookmark - delete.png">
+      <Link>Resources\Icons\bookmark - delete.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\calculator - addition.png">
+      <Link>Resources\Icons\calculator - addition.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\calculator - divide.png">
+      <Link>Resources\Icons\calculator - divide.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\calculator - equal.png">
+      <Link>Resources\Icons\calculator - equal.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\calculator - minus.png">
+      <Link>Resources\Icons\calculator - minus.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\calculator - multiply.png">
+      <Link>Resources\Icons\calculator - multiply.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\chat.png">
+      <Link>Resources\Icons\chat.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\check.png">
+      <Link>Resources\Icons\check.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\delete.png">
+      <Link>Resources\Icons\delete.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\document - copy.png">
+      <Link>Resources\Icons\document - copy.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\document - delete.png">
+      <Link>Resources\Icons\document - delete.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\document.png">
+      <Link>Resources\Icons\document.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\edit.png">
+      <Link>Resources\Icons\edit.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\file - close.png">
+      <Link>Resources\Icons\file - close.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\file - copy.png">
+      <Link>Resources\Icons\file - copy.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\file.png">
+      <Link>Resources\Icons\file.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\gift.png">
+      <Link>Resources\Icons\gift.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\help.png">
+      <Link>Resources\Icons\help.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\mail %28reversed%29.png">
+      <Link>Resources\Icons\mail %28reversed%29.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\mail - copy.png">
+      <Link>Resources\Icons\mail - copy.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\mail - delete.png">
+      <Link>Resources\Icons\mail - delete.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\mail.png">
+      <Link>Resources\Icons\mail.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\more.png">
+      <Link>Resources\Icons\more.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\photo - copy.png">
+      <Link>Resources\Icons\photo - copy.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\photo - crop.png">
+      <Link>Resources\Icons\photo - crop.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\photo - delete.png">
+      <Link>Resources\Icons\photo - delete.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\photo - redeye correction.png">
+      <Link>Resources\Icons\photo - redeye correction.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\photo.png">
+      <Link>Resources\Icons\photo.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\player - fastforward.png">
+      <Link>Resources\Icons\player - fastforward.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\player - pause.png">
+      <Link>Resources\Icons\player - pause.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\player - play.png">
+      <Link>Resources\Icons\player - play.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\player - rewind.png">
+      <Link>Resources\Icons\player - rewind.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\player - skipbackwards.png">
+      <Link>Resources\Icons\player - skipbackwards.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\player - skipforward.png">
+      <Link>Resources\Icons\player - skipforward.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\print.png">
+      <Link>Resources\Icons\print.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\purchase.png">
+      <Link>Resources\Icons\purchase.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\refresh.png">
+      <Link>Resources\Icons\refresh.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\rss.png">
+      <Link>Resources\Icons\rss.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\search.png">
+      <Link>Resources\Icons\search.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\tools - alternative.png">
+      <Link>Resources\Icons\tools - alternative.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\tools.png">
+      <Link>Resources\Icons\tools.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\trash.png">
+      <Link>Resources\Icons\trash.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\usb.png">
+      <Link>Resources\Icons\usb.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\volume - mute.png">
+      <Link>Resources\Icons\volume - mute.png</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Icons\volume.png">
+      <Link>Resources\Icons\volume.png</Link>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\blue0.jpg">
+      <Link>Resources\Images\blue0.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\blue1.jpg">
+      <Link>Resources\Images\blue1.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\blue2.jpg">
+      <Link>Resources\Images\blue2.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\blue3.jpg">
+      <Link>Resources\Images\blue3.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\blue4.jpg">
+      <Link>Resources\Images\blue4.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\blue5.jpg">
+      <Link>Resources\Images\blue5.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\blue6.jpg">
+      <Link>Resources\Images\blue6.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\blue7.jpg">
+      <Link>Resources\Images\blue7.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\blue8.jpg">
+      <Link>Resources\Images\blue8.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\blue9.jpg">
+      <Link>Resources\Images\blue9.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\green0.jpg">
+      <Link>Resources\Images\green0.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\green1.jpg">
+      <Link>Resources\Images\green1.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\green2.jpg">
+      <Link>Resources\Images\green2.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\green3.jpg">
+      <Link>Resources\Images\green3.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\green4.jpg">
+      <Link>Resources\Images\green4.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\green5.jpg">
+      <Link>Resources\Images\green5.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\green6.jpg">
+      <Link>Resources\Images\green6.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\green7.jpg">
+      <Link>Resources\Images\green7.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\green8.jpg">
+      <Link>Resources\Images\green8.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\green9.jpg">
+      <Link>Resources\Images\green9.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\orange0.jpg">
+      <Link>Resources\Images\orange0.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\orange1.jpg">
+      <Link>Resources\Images\orange1.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\orange2.jpg">
+      <Link>Resources\Images\orange2.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\orange3.jpg">
+      <Link>Resources\Images\orange3.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\orange4.jpg">
+      <Link>Resources\Images\orange4.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\orange5.jpg">
+      <Link>Resources\Images\orange5.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\orange6.jpg">
+      <Link>Resources\Images\orange6.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\orange7.jpg">
+      <Link>Resources\Images\orange7.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\orange8.jpg">
+      <Link>Resources\Images\orange8.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\orange9.jpg">
+      <Link>Resources\Images\orange9.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\rhodamine0.jpg">
+      <Link>Resources\Images\rhodamine0.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\rhodamine1.jpg">
+      <Link>Resources\Images\rhodamine1.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\rhodamine2.jpg">
+      <Link>Resources\Images\rhodamine2.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\rhodamine3.jpg">
+      <Link>Resources\Images\rhodamine3.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\rhodamine4.jpg">
+      <Link>Resources\Images\rhodamine4.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\rhodamine5.jpg">
+      <Link>Resources\Images\rhodamine5.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\rhodamine6.jpg">
+      <Link>Resources\Images\rhodamine6.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\rhodamine7.jpg">
+      <Link>Resources\Images\rhodamine7.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\rhodamine8.jpg">
+      <Link>Resources\Images\rhodamine8.jpg</Link>
+    </Resource>
+    <Resource Include="..\ManuelsCouchTisch\Resources\Images\rhodamine9.jpg">
+      <Link>Resources\Images\rhodamine9.jpg</Link>
+    </Resource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

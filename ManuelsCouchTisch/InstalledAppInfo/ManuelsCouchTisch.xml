@@ -9,30 +9,16 @@
     <Arguments></Arguments>
     <IconImageFile>InstalledAppInfo\AppIcon.png</IconImageFile>   
     <Tags>
-			<Tag Value="0x00">
+			<Tag Value="0x02">
 				<!-- There is no "Launch" entry inside the "Actions" element because we do not want this
         tag to be used to launch the ControlsBox application using object routing.
         We register the tag to prevent object routing from appearing while the tag "0xC0" is used 
         in this application even if other applications have registered for object routing on that 
         same tag. -->
-				<Actions/>
+				<Actions>
+					<Launch/>
+				</Actions>
 			</Tag>
-			<Tag Value="0x10">
-				<!-- There is no "Launch" entry inside the "Actions" element because we do not want this
-        tag to be used to launch the ControlsBox application using object routing.
-        We register the tag to prevent object routing from appearing while the tag "0xC0" is used 
-        in this application even if other applications have registered for object routing on that 
-        same tag. -->
-				<Actions/>
-			</Tag>
-      <Tag Value="0xC0">
-        <!-- There is no "Launch" entry inside the "Actions" element because we do not want this
-        tag to be used to launch the ControlsBox application using object routing.
-        We register the tag to prevent object routing from appearing while the tag "0xC0" is used 
-        in this application even if other applications have registered for object routing on that 
-        same tag. -->
-        <Actions/>
-      </Tag>
     </Tags>
   </Application>
 </ss:ApplicationInfo>
