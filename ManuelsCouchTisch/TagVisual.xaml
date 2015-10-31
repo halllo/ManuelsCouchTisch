@@ -10,8 +10,8 @@
         <Ellipse Fill="{Binding Color}" Opacity="0.4" />
         <Ellipse Fill="{Binding Color}" Margin="2" />
 
-        <TextBlock Text="{Binding Name, StringFormat=Hallo {0}}" TextWrapping="NoWrap" Margin="20"/>
-
+        <TextBlock Text="{Binding Name, StringFormat={}Hallo {0}}" FontSize="15" TextWrapping="NoWrap" Margin="20"/>
+		
         <s:ElementMenu Visibility="{Binding MasterMenuVisible}"
                   ActivationMode="AlwaysActive"
                   HorizontalAlignment="Right" 
@@ -24,6 +24,7 @@
             <s:ElementMenuItem Header="Namen &amp; Farben" Icon="{StaticResource IconTools}" Command="{Binding NamenUndFarben}" />
             <s:ElementMenuItem Header="Demo" Icon="{StaticResource IconFile}" Command="{Binding ToggleDemo}" />
         </s:ElementMenu>
-    </Grid>
 
+    </Grid>
+	
 </s:TagVisualization>

@@ -93,6 +93,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="..\ManuelsCouchTisch\Themes\Generic.xaml">
+      <Link>Themes\Generic.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -111,6 +116,9 @@
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\TagVisual.xaml.cs">
       <Link>TagVisual.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\ManuelsCouchTisch\TextOnAPath.cs">
+      <Link>TextOnAPath.cs</Link>
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\ViewModel.cs">
       <Link>ViewModel.cs</Link>
