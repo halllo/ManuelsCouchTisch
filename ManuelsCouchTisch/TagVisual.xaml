@@ -10,8 +10,24 @@
         <Ellipse Fill="{Binding Color}" Opacity="0.4" />
         <Ellipse Fill="{Binding Color}" Margin="2" />
 
-        <TextBlock Text="{Binding Name, StringFormat={}Hallo {0}}" FontSize="15" TextWrapping="NoWrap" Margin="20"/>
-		
+        <local:TextOnAPath Text="{Binding Name}" FontSize="15" DrawPath="False" Margin="10" Foreground="White">
+            <local:TextOnAPath.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="nameRotation" Storyboard.TargetProperty="Angle" To="360" Duration="0:0:15" RepeatBehavior="Forever"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </local:TextOnAPath.Triggers>
+            <local:TextOnAPath.RenderTransform>
+                <RotateTransform CenterX="90" CenterY="90" Angle="0" x:Name="nameRotation"/>
+            </local:TextOnAPath.RenderTransform>
+            <local:TextOnAPath.TextPath>
+                <EllipseGeometry RadiusX="75" RadiusY="75"/>
+            </local:TextOnAPath.TextPath>
+        </local:TextOnAPath>
+
         <s:ElementMenu Visibility="{Binding MasterMenuVisible}"
                   ActivationMode="AlwaysActive"
                   HorizontalAlignment="Right" 

@@ -107,33 +107,6 @@
                     <local:TagVisual x:Name="tag02"/>
                 </s:ScatterViewItem>
 
-                <s:ScatterViewItem Background="Red" Width="200" Height="200">
-                    <Grid>
-                        <local:TextOnAPath Text="Hallo Welt" FontSize="15" DrawPath="True" Margin="10" Background="Blue" Foreground="White">
-                            <local:TextOnAPath.TextPath>
-                                <EllipseGeometry RadiusX="50" RadiusY="50"/>
-                            </local:TextOnAPath.TextPath>
-                        </local:TextOnAPath>
-                        <local:TextOnAPath Text="Hallo Welt" FontSize="15" DrawPath="False" Margin="10" Foreground="White">
-                            <local:TextOnAPath.Triggers>
-                                <EventTrigger RoutedEvent="Loaded">
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="nameRotation" Storyboard.TargetProperty="Angle" To="360" Duration="0:0:15" RepeatBehavior="Forever"/>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                            </local:TextOnAPath.Triggers>
-                            <local:TextOnAPath.RenderTransform>
-                                <RotateTransform CenterX="90" CenterY="90" Angle="0" x:Name="nameRotation"/>
-                            </local:TextOnAPath.RenderTransform>
-                            <local:TextOnAPath.TextPath>
-                                <EllipseGeometry RadiusX="75" RadiusY="75"/>
-                            </local:TextOnAPath.TextPath>
-                        </local:TextOnAPath>
-                    </Grid>
-                </s:ScatterViewItem>
-
 
             </s:ScatterView>
         </Grid>

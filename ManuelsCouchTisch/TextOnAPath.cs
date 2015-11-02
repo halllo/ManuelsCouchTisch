@@ -319,6 +319,19 @@ namespace ManuelsCouchTisch
 
 		public TextOnAPath()
 		{
+			var canvas = new FrameworkElementFactory(typeof(Canvas));
+			canvas.Name = "LayoutPanel";
+
+			var border = new FrameworkElementFactory(typeof(Border));
+			border.SetValue(Border.BorderBrushProperty, new TemplateBindingExtension(BorderBrushProperty));
+			border.SetValue(Border.BorderThicknessProperty, new TemplateBindingExtension(BorderThicknessProperty));
+			border.SetValue(Border.BackgroundProperty, new TemplateBindingExtension(BackgroundProperty));
+			border.AppendChild(canvas);
+
+			var controlTemplate = new ControlTemplate(typeof(TextOnAPath));
+			controlTemplate.VisualTree = border;
+
+			Template = controlTemplate;
 		}
 
 		public override void OnApplyTemplate()
