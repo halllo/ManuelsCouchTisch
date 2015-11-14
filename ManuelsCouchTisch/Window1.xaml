@@ -107,6 +107,9 @@
 
 
                     <local:NamenUndFarbenView x:Name="namenUndFarben"/>
+					
+					
+					<local:KonsoleView x:Name="konsole"/>
 
 
                 </s:ScatterView>

@@ -29,15 +29,15 @@ namespace ManuelsCouchTisch
 		Visibility _MasterMenuVisible;
 		public Visibility MasterMenuVisible { get { return _MasterMenuVisible; } set { _MasterMenuVisible = value; NotifyChanged("MasterMenuVisible"); } }
 
-		public Command Click { get; set; }
 		public Command NamenUndFarben { get; set; }
+		public Command Konsole { get; set; }
 		public Command ToggleDemo { get; set; }
 
 		public TagVisualModel()
 		{
 			MasterMenuVisible = Visibility.Collapsed;
-			Click = new Command(o => { });
-			NamenUndFarben = new Command(o => { TagManagement.Instance.Value.RaiseShowAdmin(); });
+			NamenUndFarben = new Command(o => { TagManagement.Instance.Value.RaiseShowNamenUndFarben(); });
+			Konsole = new Command(o => { TagManagement.Instance.Value.RaiseShowKonsole(); });
 			ToggleDemo = new Command(o => { TagManagement.Instance.Value.RaiseShowDemo(); });
 		}
 

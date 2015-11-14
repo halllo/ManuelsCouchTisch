@@ -1,11 +1,17 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ManuelsCouchTisch
 {
 	public class ViewModel : INotifyPropertyChanged
 	{
+		public void Dispatch(Action action)
+		{
+			Application.Current.Dispatcher.BeginInvoke(action);
+		}
+
 		public void NotifyChanged(string memberName)
 		{
 			var pc = PropertyChanged;

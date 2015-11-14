@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.SignalR.Client">
+      <HintPath>..\LIB\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Surface">
       <HintPath>..\LIB\Microsoft.Surface.dll</HintPath>
     </Reference>
@@ -52,6 +55,9 @@
     </Reference>
     <Reference Include="Microsoft.Surface.Presentation.Generic">
       <HintPath>..\LIB\Microsoft.Surface.Presentation.Generic.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\LIB\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -75,6 +81,11 @@
     </ApplicationDefinition>
     <Page Include="..\ManuelsCouchTisch\ColorChooser.xaml">
       <Link>ColorChooser.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\ManuelsCouchTisch\KonsoleView.xaml">
+      <Link>KonsoleView.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -102,6 +113,12 @@
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\ImageInfo.cs">
       <Link>ImageInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\ManuelsCouchTisch\KonsoleView.xaml.cs">
+      <Link>KonsoleView.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\ManuelsCouchTisch\MBusClient.cs">
+      <Link>MBusClient.cs</Link>
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\NamenUndFarbenView.xaml.cs">
       <Link>NamenUndFarbenView.xaml.cs</Link>

@@ -65,11 +65,22 @@ namespace ManuelsCouchTisch.Test
 			libraryContainer1ScatterViewItem.Visibility = System.Windows.Visibility.Collapsed;
 			libraryContainer2ScatterViewItem.Visibility = System.Windows.Visibility.Collapsed;
 
-			TagManagement.Instance.Value.OnShowAdmin += () =>
+			TagManagement.Instance.Value.OnShowNamenUndFarben += () =>
 			{
 				namenUndFarben.ViewModel.WindowVisible = System.Windows.Visibility.Visible;
 			};
 			namenUndFarben.ViewModel.WindowVisible = System.Windows.Visibility.Collapsed;
+
+			TagManagement.Instance.Value.OnShowKonsole += () =>
+			{
+				konsole.ViewModel.WindowVisible = System.Windows.Visibility.Visible;
+			};
+			konsole.ViewModel.WindowVisible = System.Windows.Visibility.Collapsed;
+
+			
+
+			
+			Loaded += (s, e) => TagManagement.Instance.Value.ConnectToMBus("http://localhost:8000/signalr");
 		}
 	}
 }

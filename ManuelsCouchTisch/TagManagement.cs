@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Media;
 
 namespace ManuelsCouchTisch
@@ -36,7 +37,16 @@ namespace ManuelsCouchTisch
 			{ 5, new Data { Name = "5", Color = AllColors[5] } },
 		};
 
+		public MBusClient MBus = new MBusClient("couchtisch");
+
 		Dictionary<long, TagVisualModel> viewModels = new Dictionary<long, TagVisualModel>();
+
+		public event Action<string> OnLog;
+		public void RaiseLog(string log)
+		{
+			var h = OnLog;
+			if (h != null) h(log);
+		}
 
 		public event Action OnShowDemo;
 		public void RaiseShowDemo()
@@ -45,11 +55,69 @@ namespace ManuelsCouchTisch
 			if (h != null) h();
 		}
 
-		public event Action OnShowAdmin;
-		public void RaiseShowAdmin()
+		public event Action OnShowNamenUndFarben;
+		public void RaiseShowNamenUndFarben()
 		{
-			var h = OnShowAdmin;
+			var h = OnShowNamenUndFarben;
 			if (h != null) h();
+		}
+
+		public event Action OnShowKonsole;
+		public void RaiseShowKonsole()
+		{
+			var h = OnShowKonsole;
+			if (h != null) h();
+		}
+
+		public void ConnectToMBus(string url = "http://mbus.de:8000/signalr")
+		{
+			MBus.OnDisconnect += Mbus_OnDisconnect;
+			MBus.On += Mbus_On;
+			try
+			{
+				RaiseLog("connecting to " + url);
+				MBus.Connect(url).Wait();
+				RaiseLog("connected");
+				MBus.Emit("hallo");
+			}
+			catch (AggregateException e)
+			{
+				RaiseLog("cannot connect: " + e.InnerException.Message);
+			}
+		}
+
+		private void Mbus_On(string clientname, string message)
+		{
+			var messageItems = message.Split(new[] { ";" }, StringSplitOptions.None);
+			if (messageItems[0] == "couchtisch")
+			{
+				RaiseLog(clientname + ": " + message);
+				if (messageItems.Length == 4)
+				{
+					try
+					{
+						var tag = long.Parse(messageItems[1]);
+						var name = messageItems[2];
+						var color = AllColors[int.Parse(messageItems[3])];
+
+						var viewModel = viewModels[tag];
+						viewModel.Dispatch(() =>
+						{
+							viewModel.Name = name;
+							viewModel.Color = color;
+						});
+					}
+					catch (Exception e)
+					{
+						RaiseLog(e.Message);
+					}
+				}
+			}
+		}
+
+		private void Mbus_OnDisconnect()
+		{
+			RaiseLog("disconnect");
 		}
 
 		public void Register(long tag, TagVisualModel viewModel)
