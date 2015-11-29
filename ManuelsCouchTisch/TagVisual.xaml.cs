@@ -43,7 +43,7 @@ namespace ManuelsCouchTisch
 
 		public void TagAvailable(TagData tag)
 		{
-			MasterMenuVisible = tag.Value == 2 ? Visibility.Visible : Visibility.Collapsed;
+			MasterMenuVisible = tag.Value == 0 ? Visibility.Visible : Visibility.Collapsed;
 
 			TagManagement.Instance.Value.Register(tag.Value, this);
 		}

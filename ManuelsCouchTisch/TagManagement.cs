@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
@@ -17,29 +18,36 @@ namespace ManuelsCouchTisch
 		public readonly static Lazy<TagManagement> Instance = new Lazy<TagManagement>(() => new TagManagement());
 
 
-		public static readonly List<Brush> AllColors = new List<Brush>
+		public static readonly Dictionary<string, Brush> AllColors = new Dictionary<string, Brush>
 		{
-			Brushes.Red,
-			Brushes.Green,
-			Brushes.Blue,
-			Brushes.Lime,
-			Brushes.DeepPink,
-			Brushes.DarkGray,
+			{ "rot", Brushes.Red },
+			{ "grün", Brushes.Green },
+			{ "blau", Brushes.Blue },
+			{ "lime", Brushes.Lime },
+			{ "magenta", Brushes.DeepPink },
+			{ "grau", Brushes.DarkGray },
 		};
 
 		public Dictionary<long, Data> Tags = new Dictionary<long, Data>
 		{
-			{ 0, new Data { Name = "0", Color = AllColors[0] } },
-			{ 1, new Data { Name = "1", Color = AllColors[1] } },
-			{ 2, new Data { Name = "Manuel", Color = AllColors[2] } },
-			{ 3, new Data { Name = "3", Color = AllColors[3] } },
-			{ 4, new Data { Name = "4", Color = AllColors[4] } },
-			{ 5, new Data { Name = "5", Color = AllColors[5] } },
+			{ 0, new Data { Name = "Manuel", Color = AllColors["blau"] } },
+			{ 1, new Data { Name = "1", Color = AllColors["grün"] } },
+			{ 2, new Data { Name = "2", Color = AllColors["rot"] } },
+			{ 3, new Data { Name = "3", Color = AllColors["lime"] } },
+			{ 4, new Data { Name = "4", Color = AllColors["magenta"] } },
+			{ 5, new Data { Name = "5", Color = AllColors["grau"] } },
 		};
 
 		public MBusClient MBus = new MBusClient("couchtisch");
 
 		Dictionary<long, TagVisualModel> viewModels = new Dictionary<long, TagVisualModel>();
+
+		public event Action OnTagsChangedRemotly;
+		public void RaiseTagsChangedRemotly()
+		{
+			var h = OnTagsChangedRemotly;
+			if (h != null) h();
+		}
 
 		public event Action<string> OnLog;
 		public void RaiseLog(string log)
@@ -88,6 +96,13 @@ namespace ManuelsCouchTisch
 
 		private void Mbus_On(string clientname, string message)
 		{
+			if(clientname == "gastmanager.app" && message == "hallo")
+			{
+				RaiseLog(clientname + ": " + message);
+				MBusEmitTags();
+				return;
+			}
+
 			var messageItems = message.Split(new[] { ";" }, StringSplitOptions.None);
 			if (messageItems[0] == "couchtisch")
 			{
@@ -98,7 +113,12 @@ namespace ManuelsCouchTisch
 					{
 						var tag = long.Parse(messageItems[1]);
 						var name = messageItems[2];
-						var color = AllColors[int.Parse(messageItems[3])];
+						var color = AllColors[messageItems[3]];
+
+						var tagData = Tags[tag];
+						tagData.Name = name;
+						tagData.Color = color;
+						RaiseTagsChangedRemotly();
 
 						var viewModel = viewModels[tag];
 						viewModel.Dispatch(() =>
@@ -113,6 +133,12 @@ namespace ManuelsCouchTisch
 					}
 				}
 			}
+		}
+
+		private void MBusEmitTags()
+		{
+			var tagDump = "gäste;\n" + string.Join("\n", Tags.Select(t => "" + t.Key + ";" + t.Value.Name + ";" + AllColors.First(c => c.Value == t.Value.Color).Key));
+			MBus.Emit(tagDump);
 		}
 
 		private void Mbus_OnDisconnect()
@@ -137,6 +163,8 @@ namespace ManuelsCouchTisch
 				viewModels[tag.Key].Name = Tags[tag.Key].Name;
 				viewModels[tag.Key].Color = Tags[tag.Key].Color;
 			}
-		}
+
+			MBusEmitTags();
+        }
 	}
 }

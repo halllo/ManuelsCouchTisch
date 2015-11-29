@@ -101,9 +101,12 @@
 
 
                 <s:ScatterViewItem Width="200" Height="200">
-                    <local:TagVisual x:Name="tag01"/>
+                    <local:TagVisual x:Name="tag00"/>
                 </s:ScatterViewItem>
 
+                <s:ScatterViewItem Width="200" Height="200">
+                    <local:TagVisual x:Name="tag01"/>
+                </s:ScatterViewItem>
 
                 <s:ScatterViewItem Width="200" Height="200">
                     <local:TagVisual x:Name="tag02"/>

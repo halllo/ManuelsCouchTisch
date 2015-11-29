@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 
@@ -41,21 +43,24 @@ namespace ManuelsCouchTisch
 
 		public NamenUndFarbenViewModel()
 		{
-			Colors = TagManagement.AllColors;
-
-			Name0 = TagManagement.Instance.Value.Tags[0].Name;
-			Name1 = TagManagement.Instance.Value.Tags[1].Name;
-			Name2 = TagManagement.Instance.Value.Tags[2].Name;
-			Name3 = TagManagement.Instance.Value.Tags[3].Name;
-			Name4 = TagManagement.Instance.Value.Tags[4].Name;
-			Name5 = TagManagement.Instance.Value.Tags[5].Name;
-
-			Color0 = TagManagement.Instance.Value.Tags[0].Color;
-			Color1 = TagManagement.Instance.Value.Tags[1].Color;
-			Color2 = TagManagement.Instance.Value.Tags[2].Color;
-			Color3 = TagManagement.Instance.Value.Tags[3].Color;
-			Color4 = TagManagement.Instance.Value.Tags[4].Color;
-			Color5 = TagManagement.Instance.Value.Tags[5].Color;
+			Colors = TagManagement.AllColors.Select(c => c.Value).ToList();
+			var refreshTags = new Action(() =>
+			{
+				Name0 = TagManagement.Instance.Value.Tags[0].Name;
+				Name1 = TagManagement.Instance.Value.Tags[1].Name;
+				Name2 = TagManagement.Instance.Value.Tags[2].Name;
+				Name3 = TagManagement.Instance.Value.Tags[3].Name;
+				Name4 = TagManagement.Instance.Value.Tags[4].Name;
+				Name5 = TagManagement.Instance.Value.Tags[5].Name;
+				Color0 = TagManagement.Instance.Value.Tags[0].Color;
+				Color1 = TagManagement.Instance.Value.Tags[1].Color;
+				Color2 = TagManagement.Instance.Value.Tags[2].Color;
+				Color3 = TagManagement.Instance.Value.Tags[3].Color;
+				Color4 = TagManagement.Instance.Value.Tags[4].Color;
+				Color5 = TagManagement.Instance.Value.Tags[5].Color;
+			});
+			refreshTags();
+			TagManagement.Instance.Value.OnTagsChangedRemotly += refreshTags;
 
 			Close = new Command(o => { WindowVisible = Visibility.Collapsed; });
 			Save = new Command(o =>

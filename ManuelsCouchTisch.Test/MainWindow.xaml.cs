@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
@@ -46,10 +47,16 @@ namespace ManuelsCouchTisch.Test
 
 
 
+			var setTags = new RoutedEventHandler((s, e) =>
+			{
+				tag00.ViewModel.TagAvailable(new Microsoft.Surface.Presentation.Input.TagData(0, 0, 0, 0));
+				tag01.ViewModel.TagAvailable(new Microsoft.Surface.Presentation.Input.TagData(0, 0, 0, 1));
+				tag02.ViewModel.TagAvailable(new Microsoft.Surface.Presentation.Input.TagData(0, 0, 0, 2));
+			});
 
-
-			tag01.Loaded += (s, e) => { tag01.ViewModel.TagAvailable(new Microsoft.Surface.Presentation.Input.TagData(0, 0, 0, 1)); };
-			tag02.Loaded += (s, e) => { tag02.ViewModel.TagAvailable(new Microsoft.Surface.Presentation.Input.TagData(0, 0, 0, 2)); };
+			tag00.Loaded += setTags;
+			tag01.Loaded += setTags;
+			tag02.Loaded += setTags;
 
 
 
@@ -77,9 +84,9 @@ namespace ManuelsCouchTisch.Test
 			};
 			konsole.ViewModel.WindowVisible = System.Windows.Visibility.Collapsed;
 
-			
 
-			
+
+
 			Loaded += (s, e) => TagManagement.Instance.Value.ConnectToMBus("http://localhost:8000/signalr");
 		}
 	}
