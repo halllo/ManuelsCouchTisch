@@ -111,6 +111,9 @@
     <Compile Include="..\ManuelsCouchTisch\ColorChooser.xaml.cs">
       <Link>ColorChooser.xaml.cs</Link>
     </Compile>
+    <Compile Include="..\ManuelsCouchTisch\GastGedaechtnis.cs">
+      <Link>GastGedaechtnis.cs</Link>
+    </Compile>
     <Compile Include="..\ManuelsCouchTisch\ImageInfo.cs">
       <Link>ImageInfo.cs</Link>
     </Compile>
@@ -122,6 +125,9 @@
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\NamenUndFarbenView.xaml.cs">
       <Link>NamenUndFarbenView.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\ManuelsCouchTisch\Properties\Settings.Designer.cs">
+      <Link>Properties\Settings.Designer.cs</Link>
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\TagManagement.cs">
       <Link>TagManagement.cs</Link>
@@ -148,18 +154,12 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\ManuelsCouchTisch\Properties\Settings.settings">
+      <Link>Properties\Settings.settings</Link>
+    </None>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>

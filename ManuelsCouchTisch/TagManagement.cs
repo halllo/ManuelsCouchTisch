@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows.Media;
 
 namespace ManuelsCouchTisch
@@ -42,6 +40,15 @@ namespace ManuelsCouchTisch
 
 		Dictionary<long, TagVisualModel> viewModels = new Dictionary<long, TagVisualModel>();
 
+		private GastGedaechtnis _gedaechtnis;
+
+
+		public TagManagement()
+		{
+			_gedaechtnis = new GastGedaechtnis(Tags, AllColors);
+		}
+
+
 		public event Action OnTagsChangedRemotly;
 		public void RaiseTagsChangedRemotly()
 		{
@@ -79,6 +86,9 @@ namespace ManuelsCouchTisch
 
 		public void ConnectToMBus(string url = "http://mbus.de:8000/signalr")
 		{
+			_gedaechtnis.Restore();
+			RaiseTagsChangedRemotly();
+
 			MBus.OnDisconnect += Mbus_OnDisconnect;
 			MBus.On += Mbus_On;
 			try
@@ -96,7 +106,7 @@ namespace ManuelsCouchTisch
 
 		private void Mbus_On(string clientname, string message)
 		{
-			if(clientname == "gastmanager.app" && message == "hallo")
+			if (clientname == "gastmanager.app" && message == "hallo")
 			{
 				RaiseLog(clientname + ": " + message);
 				MBusEmitTags();
@@ -137,14 +147,21 @@ namespace ManuelsCouchTisch
 
 		private void MBusEmitTags()
 		{
-			var tagDump = "gäste;\n" + string.Join("\n", Tags.Select(t => "" + t.Key + ";" + t.Value.Name + ";" + AllColors.First(c => c.Value == t.Value.Color).Key));
-			MBus.Emit(tagDump);
+			_gedaechtnis.Store();
+			var tagDump = _gedaechtnis.AsTagDump();
+
+			if (MBus.ConnectionId != null)
+			{
+				MBus.Emit(tagDump);
+			}
 		}
 
 		private void Mbus_OnDisconnect()
 		{
 			RaiseLog("disconnect");
 		}
+
+
 
 		public void Register(long tag, TagVisualModel viewModel)
 		{
@@ -157,6 +174,7 @@ namespace ManuelsCouchTisch
 		public void Update(Dictionary<long, Data> namenUndFarben)
 		{
 			Tags = namenUndFarben;
+			_gedaechtnis = new GastGedaechtnis(Tags, AllColors);
 
 			foreach (var tag in viewModels)
 			{
@@ -165,6 +183,6 @@ namespace ManuelsCouchTisch
 			}
 
 			MBusEmitTags();
-        }
+		}
 	}
 }

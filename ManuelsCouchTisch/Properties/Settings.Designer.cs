@@ -22,5 +22,17 @@ namespace ManuelsCouchTisch.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Guests {
+            get {
+                return ((string)(this["Guests"]));
+            }
+            set {
+                this["Guests"] = value;
+            }
+        }
     }
 }

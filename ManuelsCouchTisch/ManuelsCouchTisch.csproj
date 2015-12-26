@@ -116,6 +116,7 @@
     <Compile Include="ColorChooser.xaml.cs">
       <DependentUpon>ColorChooser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GastGedaechtnis.cs" />
     <Compile Include="ImageInfo.cs" />
     <Compile Include="MBusClient.cs" />
     <Compile Include="KonsoleView.xaml.cs">
