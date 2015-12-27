@@ -128,6 +128,7 @@ namespace ManuelsCouchTisch
 						var tagData = Tags[tag];
 						tagData.Name = name;
 						tagData.Color = color;
+						_gedaechtnis.Store();
 						RaiseTagsChangedRemotly();
 
 						var viewModel = viewModels[tag];
@@ -147,7 +148,6 @@ namespace ManuelsCouchTisch
 
 		private void MBusEmitTags()
 		{
-			_gedaechtnis.Store();
 			var tagDump = _gedaechtnis.AsTagDump();
 
 			if (MBus.ConnectionId != null)
@@ -183,6 +183,7 @@ namespace ManuelsCouchTisch
 			}
 
 			MBusEmitTags();
+			_gedaechtnis.Store();
 		}
 	}
 }
