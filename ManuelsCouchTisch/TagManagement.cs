@@ -63,13 +63,6 @@ namespace ManuelsCouchTisch
 			if (h != null) h(log);
 		}
 
-		public event Action OnShowDemo;
-		public void RaiseShowDemo()
-		{
-			var h = OnShowDemo;
-			if (h != null) h();
-		}
-
 		public event Action OnShowNamenUndFarben;
 		public void RaiseShowNamenUndFarben()
 		{

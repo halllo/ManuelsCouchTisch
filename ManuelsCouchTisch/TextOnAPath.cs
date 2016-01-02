@@ -214,6 +214,8 @@ namespace ManuelsCouchTisch
 
 		#endregion
 
+		public bool Inverted { get; set; }
+
 		void UpdateText()
 		{
 			if (Text == null || FontFamily == null || FontWeight == null || FontStyle == null)
@@ -230,10 +232,19 @@ namespace ManuelsCouchTisch
 				t.FontStretch = this.FontStretch;
 				t.FontWeight = this.FontWeight;
 				t.FontStyle = this.FontStyle;
-				t.Text = new String(Text[(Text.Length - 1) - i], 1);
-				t.LayoutTransform = new RotateTransform(angle: 180);
-				t.RenderTransformOrigin = new Point(0.0, 1.0);
 
+				if (Inverted)
+				{
+					t.Text = new String(Text[i], 1);
+					t.LayoutTransform = new RotateTransform(angle: 0);
+				}
+				else
+				{
+					t.Text = new String(Text[(Text.Length - 1) - i], 1);
+					t.LayoutTransform = new RotateTransform(angle: 180);
+				}
+
+				t.RenderTransformOrigin = new Point(0.0, 1.0);
 				t.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
 
 				_textBlocks[i] = t;

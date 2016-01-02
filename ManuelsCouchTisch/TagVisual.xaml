@@ -38,9 +38,8 @@
                 <Image x:Shared="false" x:Key="IconFile" Source="Resources\Icons\file.png"/>
             </s:ElementMenu.Resources>
             <s:ElementMenuItem Header="Namen &amp; Farben" Icon="{StaticResource IconTools}" Command="{Binding NamenUndFarben}" />
-            <s:ElementMenuItem Header="Konsole" Icon="{StaticResource IconTools}" Command="{Binding Konsole}" />
-            <s:ElementMenuItem Header="Demo" Icon="{StaticResource IconFile}" Command="{Binding ToggleDemo}" />
-        </s:ElementMenu>
+			<s:ElementMenuItem Header="Konsole" Icon="{StaticResource IconTools}" Command="{Binding Konsole}" />
+		</s:ElementMenu>
 
     </Grid>
 	

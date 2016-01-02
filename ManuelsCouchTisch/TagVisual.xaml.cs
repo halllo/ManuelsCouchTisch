@@ -31,21 +31,21 @@ namespace ManuelsCouchTisch
 
 		public Command NamenUndFarben { get; set; }
 		public Command Konsole { get; set; }
-		public Command ToggleDemo { get; set; }
 
 		public TagVisualModel()
 		{
 			MasterMenuVisible = Visibility.Collapsed;
 			NamenUndFarben = new Command(o => { TagManagement.Instance.Value.RaiseShowNamenUndFarben(); });
 			Konsole = new Command(o => { TagManagement.Instance.Value.RaiseShowKonsole(); });
-			ToggleDemo = new Command(o => { TagManagement.Instance.Value.RaiseShowDemo(); });
 		}
 
 		public void TagAvailable(TagData tag)
 		{
-			MasterMenuVisible = tag.Value == 0 ? Visibility.Visible : Visibility.Collapsed;
+			var tagValue = tag.Value % 6;
 
-			TagManagement.Instance.Value.Register(tag.Value, this);
+			MasterMenuVisible = tagValue == 0 ? Visibility.Visible : Visibility.Collapsed;
+
+			TagManagement.Instance.Value.Register(tagValue, this);
 		}
 	}
 }

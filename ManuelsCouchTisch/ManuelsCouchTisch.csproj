@@ -97,10 +97,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Shared\LibraryControlResourceDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="TagVisual.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +105,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AllTagsVisualizationDefinition.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -161,97 +158,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Icons\add.png" />
-    <Resource Include="Resources\Icons\adjust color.png" />
-    <Resource Include="Resources\Icons\attach.png" />
-    <Resource Include="Resources\Icons\bookmark - add.png" />
-    <Resource Include="Resources\Icons\bookmark - delete.png" />
-    <Resource Include="Resources\Icons\calculator - addition.png" />
-    <Resource Include="Resources\Icons\calculator - divide.png" />
-    <Resource Include="Resources\Icons\calculator - equal.png" />
-    <Resource Include="Resources\Icons\calculator - minus.png" />
-    <Resource Include="Resources\Icons\calculator - multiply.png" />
-    <Resource Include="Resources\Icons\chat.png" />
-    <Resource Include="Resources\Icons\check.png" />
-    <Resource Include="Resources\Icons\delete.png" />
-    <Resource Include="Resources\Icons\document - copy.png" />
-    <Resource Include="Resources\Icons\document - delete.png" />
-    <Resource Include="Resources\Icons\document.png" />
-    <Resource Include="Resources\Icons\edit.png" />
-    <Resource Include="Resources\Icons\file - close.png" />
-    <Resource Include="Resources\Icons\file - copy.png" />
     <Resource Include="Resources\Icons\file.png" />
-    <Resource Include="Resources\Icons\gift.png" />
-    <Resource Include="Resources\Icons\help.png" />
-    <Resource Include="Resources\Icons\mail %28reversed%29.png" />
-    <Resource Include="Resources\Icons\mail - copy.png" />
-    <Resource Include="Resources\Icons\mail - delete.png" />
-    <Resource Include="Resources\Icons\mail.png" />
-    <Resource Include="Resources\Icons\more.png" />
-    <Resource Include="Resources\Icons\photo - copy.png" />
-    <Resource Include="Resources\Icons\photo - crop.png" />
-    <Resource Include="Resources\Icons\photo - delete.png" />
-    <Resource Include="Resources\Icons\photo - redeye correction.png" />
-    <Resource Include="Resources\Icons\photo.png" />
-    <Resource Include="Resources\Icons\player - fastforward.png" />
-    <Resource Include="Resources\Icons\player - pause.png" />
-    <Resource Include="Resources\Icons\player - play.png" />
-    <Resource Include="Resources\Icons\player - rewind.png" />
-    <Resource Include="Resources\Icons\player - skipbackwards.png" />
-    <Resource Include="Resources\Icons\player - skipforward.png" />
-    <Resource Include="Resources\Icons\print.png" />
-    <Resource Include="Resources\Icons\purchase.png" />
-    <Resource Include="Resources\Icons\refresh.png" />
-    <Resource Include="Resources\Icons\rss.png" />
-    <Resource Include="Resources\Icons\search.png" />
-    <Resource Include="Resources\Icons\tools - alternative.png" />
     <Resource Include="Resources\Icons\tools.png" />
-    <Resource Include="Resources\Icons\trash.png" />
-    <Resource Include="Resources\Icons\usb.png" />
-    <Resource Include="Resources\Icons\volume - mute.png" />
-    <Resource Include="Resources\Icons\volume.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\blue0.jpg" />
-    <Resource Include="Resources\Images\blue1.jpg" />
-    <Resource Include="Resources\Images\blue2.jpg" />
-    <Resource Include="Resources\Images\blue3.jpg" />
-    <Resource Include="Resources\Images\blue4.jpg" />
-    <Resource Include="Resources\Images\blue5.jpg" />
-    <Resource Include="Resources\Images\blue6.jpg" />
-    <Resource Include="Resources\Images\blue7.jpg" />
-    <Resource Include="Resources\Images\blue8.jpg" />
-    <Resource Include="Resources\Images\blue9.jpg" />
-    <Resource Include="Resources\Images\green0.jpg" />
-    <Resource Include="Resources\Images\green1.jpg" />
-    <Resource Include="Resources\Images\green2.jpg" />
-    <Resource Include="Resources\Images\green3.jpg" />
-    <Resource Include="Resources\Images\green4.jpg" />
-    <Resource Include="Resources\Images\green5.jpg" />
-    <Resource Include="Resources\Images\green6.jpg" />
-    <Resource Include="Resources\Images\green7.jpg" />
-    <Resource Include="Resources\Images\green8.jpg" />
-    <Resource Include="Resources\Images\green9.jpg" />
-    <Resource Include="Resources\Images\orange0.jpg" />
-    <Resource Include="Resources\Images\orange1.jpg" />
-    <Resource Include="Resources\Images\orange2.jpg" />
-    <Resource Include="Resources\Images\orange3.jpg" />
-    <Resource Include="Resources\Images\orange4.jpg" />
-    <Resource Include="Resources\Images\orange5.jpg" />
-    <Resource Include="Resources\Images\orange6.jpg" />
-    <Resource Include="Resources\Images\orange7.jpg" />
-    <Resource Include="Resources\Images\orange8.jpg" />
-    <Resource Include="Resources\Images\orange9.jpg" />
-    <Resource Include="Resources\Images\rhodamine0.jpg" />
-    <Resource Include="Resources\Images\rhodamine1.jpg" />
-    <Resource Include="Resources\Images\rhodamine2.jpg" />
-    <Resource Include="Resources\Images\rhodamine3.jpg" />
-    <Resource Include="Resources\Images\rhodamine4.jpg" />
-    <Resource Include="Resources\Images\rhodamine5.jpg" />
-    <Resource Include="Resources\Images\rhodamine6.jpg" />
-    <Resource Include="Resources\Images\rhodamine7.jpg" />
-    <Resource Include="Resources\Images\rhodamine8.jpg" />
-    <Resource Include="Resources\Images\rhodamine9.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ControlsBox.ico" />
