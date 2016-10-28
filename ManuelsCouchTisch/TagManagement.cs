@@ -99,7 +99,7 @@ namespace ManuelsCouchTisch
 
 		private void Mbus_On(string clientname, string message)
 		{
-			if (clientname == "gastmanager.app" && message == "hallo")
+			if (clientname.StartsWith("gastmanager.app") && message == "hallo")
 			{
 				RaiseLog(clientname + ": " + message);
 				MBusEmitTags();
