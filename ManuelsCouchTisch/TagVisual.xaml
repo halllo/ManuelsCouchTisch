@@ -41,6 +41,10 @@
 			<s:ElementMenuItem Header="Konsole" Icon="{StaticResource IconTools}" Command="{Binding Konsole}" />
 		</s:ElementMenu>
 
-    </Grid>
+		<Grid Width="100" Height="100" Background="White" Margin="0,0,0,-320" Visibility="{Binding QrCodeVisible}">
+			<Image Source="{Binding QrCode}" Stretch="Fill" />
+		</Grid>
+
+	</Grid>
 	
 </s:TagVisualization>

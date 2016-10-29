@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Media;
 
 namespace ManuelsCouchTisch
@@ -10,6 +11,7 @@ namespace ManuelsCouchTisch
 		{
 			public string Name { get; set; }
 			public Brush Color { get; set; }
+			public Visibility QrCodeVisible { get; set; }
 		}
 
 
@@ -28,12 +30,12 @@ namespace ManuelsCouchTisch
 
 		public Dictionary<long, Data> Tags = new Dictionary<long, Data>
 		{
-			{ 0, new Data { Name = "Manuel", Color = AllColors["blau"] } },
-			{ 1, new Data { Name = "1", Color = AllColors["grün"] } },
-			{ 2, new Data { Name = "2", Color = AllColors["rot"] } },
-			{ 3, new Data { Name = "3", Color = AllColors["lime"] } },
-			{ 4, new Data { Name = "4", Color = AllColors["magenta"] } },
-			{ 5, new Data { Name = "5", Color = AllColors["grau"] } },
+			{ 0, new Data { Name = "Manuel",	Color = AllColors["blau"],		QrCodeVisible=Visibility.Visible } },
+			{ 1, new Data { Name = "1",			Color = AllColors["grün"],		QrCodeVisible=Visibility.Visible } },
+			{ 2, new Data { Name = "2",			Color = AllColors["rot"],		QrCodeVisible=Visibility.Visible } },
+			{ 3, new Data { Name = "3",			Color = AllColors["lime"],		QrCodeVisible=Visibility.Visible } },
+			{ 4, new Data { Name = "4",			Color = AllColors["magenta"],	QrCodeVisible=Visibility.Visible } },
+			{ 5, new Data { Name = "5",			Color = AllColors["grau"],		QrCodeVisible=Visibility.Visible } },
 		};
 
 		public MBusClient MBus = new MBusClient("couchtisch");
@@ -121,6 +123,7 @@ namespace ManuelsCouchTisch
 						var tagData = Tags[tag];
 						tagData.Name = name;
 						tagData.Color = color;
+						tagData.QrCodeVisible = Visibility.Collapsed;
 						_gedaechtnis.Store();
 						RaiseTagsChangedRemotly();
 
@@ -129,6 +132,7 @@ namespace ManuelsCouchTisch
 						{
 							viewModel.Name = name;
 							viewModel.Color = color;
+							viewModel.QrCodeVisible = Visibility.Collapsed;
 						});
 					}
 					catch (Exception e)
@@ -162,6 +166,7 @@ namespace ManuelsCouchTisch
 
 			viewModel.Name = Tags[tag].Name;
 			viewModel.Color = Tags[tag].Color;
+			viewModel.QrCodeVisible = Tags[tag].QrCodeVisible;
 		}
 
 		public void Update(Dictionary<long, Data> namenUndFarben)
@@ -173,6 +178,7 @@ namespace ManuelsCouchTisch
 			{
 				viewModels[tag.Key].Name = Tags[tag.Key].Name;
 				viewModels[tag.Key].Color = Tags[tag.Key].Color;
+				viewModels[tag.Key].QrCodeVisible = Tags[tag.Key].QrCodeVisible;
 			}
 
 			MBusEmitTags();

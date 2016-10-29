@@ -6,63 +6,63 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ManuelsCouchTisch"
 				   
-				   MinWidth="400" MaxWidth="400" MinHeight="400" MaxHeight="400" Visibility="{Binding WindowVisible}">
+				   MinWidth="430" MaxWidth="430" MinHeight="400" MaxHeight="400" Visibility="{Binding WindowVisible}">
 
-    <Grid Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+	<Grid Margin="20">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
 
-        <Label Content="Namen &amp; Farben" Grid.ColumnSpan="2" />
+		<Label Content="Namen &amp; Farben" Grid.ColumnSpan="2" />
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            <s:SurfaceButton Content="save" Command="{Binding Save}" Width="100"/>
-            <s:SurfaceButton Content="close" Command="{Binding Close}" Width="100"/>
-        </StackPanel>
+		<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+			<s:SurfaceButton Content="save" Command="{Binding Save}" Width="100"/>
+			<s:SurfaceButton Content="close" Command="{Binding Close}" Width="100"/>
+		</StackPanel>
 
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+		<Grid Grid.Row="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="30"/>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
 
-            <Rectangle Grid.Row="0" Grid.Column="0" Margin="0,3,0,3" Fill="{Binding Color0}"/>
-            <s:SurfaceTextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name0,UpdateSourceTrigger=PropertyChanged}" Background="{Binding Color0}"/>
-            <local:ColorChooser Grid.Row="0" Grid.Column="2" Margin="2" AllColors="{Binding Colors}" SelectedColor="{Binding Color0,Mode=TwoWay}"/>
+			<s:SurfaceCheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding QrCodeVisible0}" />
+			<s:SurfaceTextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name0,UpdateSourceTrigger=PropertyChanged}" Background="{Binding Color0}"/>
+			<local:ColorChooser Grid.Row="0" Grid.Column="2" Margin="2" AllColors="{Binding Colors}" SelectedColor="{Binding Color0,Mode=TwoWay}"/>
 
-            <Rectangle Grid.Row="1" Grid.Column="0" Margin="0,3,0,3" Fill="{Binding Color1}"/>
-            <s:SurfaceTextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name1,UpdateSourceTrigger=PropertyChanged}" Background="{Binding Color1}"/>
-            <local:ColorChooser Grid.Row="1" Grid.Column="2" Margin="2" AllColors="{Binding Colors}" SelectedColor="{Binding Color1,Mode=TwoWay}"/>
+			<s:SurfaceCheckBox Grid.Row="1" Grid.Column="0" IsChecked="{Binding QrCodeVisible1}" />
+			<s:SurfaceTextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name1,UpdateSourceTrigger=PropertyChanged}" Background="{Binding Color1}"/>
+			<local:ColorChooser Grid.Row="1" Grid.Column="2" Margin="2" AllColors="{Binding Colors}" SelectedColor="{Binding Color1,Mode=TwoWay}"/>
 
-            <Rectangle Grid.Row="2" Grid.Column="0" Margin="0,3,0,3" Fill="{Binding Color2}"/>
-            <s:SurfaceTextBox Grid.Row="2" Grid.Column="1" Text="{Binding Name2,UpdateSourceTrigger=PropertyChanged}" Background="{Binding Color2}"/>
-            <local:ColorChooser Grid.Row="2" Grid.Column="2" Margin="2" AllColors="{Binding Colors}" SelectedColor="{Binding Color2,Mode=TwoWay}"/>
+			<s:SurfaceCheckBox Grid.Row="2" Grid.Column="0" IsChecked="{Binding QrCodeVisible2}" />
+			<s:SurfaceTextBox Grid.Row="2" Grid.Column="1" Text="{Binding Name2,UpdateSourceTrigger=PropertyChanged}" Background="{Binding Color2}"/>
+			<local:ColorChooser Grid.Row="2" Grid.Column="2" Margin="2" AllColors="{Binding Colors}" SelectedColor="{Binding Color2,Mode=TwoWay}"/>
 
-            <Rectangle Grid.Row="3" Grid.Column="0" Margin="0,3,0,3" Fill="{Binding Color3}"/>
-            <s:SurfaceTextBox Grid.Row="3" Grid.Column="1" Text="{Binding Name3,UpdateSourceTrigger=PropertyChanged}" Background="{Binding Color3}"/>
-            <local:ColorChooser Grid.Row="3" Grid.Column="2" Margin="2" AllColors="{Binding Colors}" SelectedColor="{Binding Color3,Mode=TwoWay}"/>
+			<s:SurfaceCheckBox Grid.Row="3" Grid.Column="0" IsChecked="{Binding QrCodeVisible3}" />
+			<s:SurfaceTextBox Grid.Row="3" Grid.Column="1" Text="{Binding Name3,UpdateSourceTrigger=PropertyChanged}" Background="{Binding Color3}"/>
+			<local:ColorChooser Grid.Row="3" Grid.Column="2" Margin="2" AllColors="{Binding Colors}" SelectedColor="{Binding Color3,Mode=TwoWay}"/>
 
-            <Rectangle Grid.Row="4" Grid.Column="0" Margin="0,3,0,3" Fill="{Binding Color4}"/>
-            <s:SurfaceTextBox Grid.Row="4" Grid.Column="1" Text="{Binding Name4,UpdateSourceTrigger=PropertyChanged}" Background="{Binding Color4}"/>
-            <local:ColorChooser Grid.Row="4" Grid.Column="2" Margin="2" AllColors="{Binding Colors}" SelectedColor="{Binding Color4,Mode=TwoWay}"/>
+			<s:SurfaceCheckBox Grid.Row="4" Grid.Column="0" IsChecked="{Binding QrCodeVisible4}" />
+			<s:SurfaceTextBox Grid.Row="4" Grid.Column="1" Text="{Binding Name4,UpdateSourceTrigger=PropertyChanged}" Background="{Binding Color4}"/>
+			<local:ColorChooser Grid.Row="4" Grid.Column="2" Margin="2" AllColors="{Binding Colors}" SelectedColor="{Binding Color4,Mode=TwoWay}"/>
 
-            <Rectangle Grid.Row="5" Grid.Column="0" Margin="0,3,0,3" Fill="{Binding Color5}"/>
-            <s:SurfaceTextBox Grid.Row="5" Grid.Column="1" Text="{Binding Name5,UpdateSourceTrigger=PropertyChanged}" Background="{Binding Color5}"/>
-            <local:ColorChooser Grid.Row="5" Grid.Column="2" Margin="2" AllColors="{Binding Colors}" SelectedColor="{Binding Color5,Mode=TwoWay}"/>
+			<s:SurfaceCheckBox Grid.Row="5" Grid.Column="0" IsChecked="{Binding QrCodeVisible5}" />
+			<s:SurfaceTextBox Grid.Row="5" Grid.Column="1" Text="{Binding Name5,UpdateSourceTrigger=PropertyChanged}" Background="{Binding Color5}"/>
+			<local:ColorChooser Grid.Row="5" Grid.Column="2" Margin="2" AllColors="{Binding Colors}" SelectedColor="{Binding Color5,Mode=TwoWay}"/>
 
-        </Grid>
+		</Grid>
 
-    </Grid>
+	</Grid>
 </s:ScatterViewItem>

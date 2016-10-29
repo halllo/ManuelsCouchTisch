@@ -1,6 +1,13 @@
 ﻿using Microsoft.Surface.Presentation.Input;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.IO;
+using ZXing;
+using System.Security.Cryptography;
+using System.Text;
+using System.Linq;
+using System;
 
 namespace ManuelsCouchTisch
 {
@@ -14,7 +21,10 @@ namespace ManuelsCouchTisch
 
 			DataContext = ViewModel = new TagVisualModel();
 
-			Loaded += (s, e) => ViewModel.TagAvailable(VisualizedTag);
+			Loaded += (s, e) =>
+			{
+				ViewModel.TagAvailable(VisualizedTag);
+			};
 		}
 	}
 
@@ -25,6 +35,12 @@ namespace ManuelsCouchTisch
 
 		Brush _Color;
 		public Brush Color { get { return _Color; } set { _Color = value; NotifyChanged("Color"); } }
+
+		ImageSource _QrCode;
+		public ImageSource QrCode { get { return _QrCode; } set { _QrCode = value; NotifyChanged("QrCode"); } }
+
+		Visibility _QrCodeVisible;
+		public Visibility QrCodeVisible { get { return _QrCodeVisible; } set { _QrCodeVisible = value; NotifyChanged("QrCodeVisible"); } }
 
 		Visibility _MasterMenuVisible;
 		public Visibility MasterMenuVisible { get { return _MasterMenuVisible; } set { _MasterMenuVisible = value; NotifyChanged("MasterMenuVisible"); } }
@@ -44,8 +60,35 @@ namespace ManuelsCouchTisch
 			var tagValue = tag.Value % 6;
 
 			MasterMenuVisible = tagValue == 0 ? Visibility.Visible : Visibility.Collapsed;
+			QrCode = QRify("https://labs.neokc.de/gast?id=" + Hash((tagValue + 1) + " on " + DateTime.Today.ToString("ddMMyyyy")));
 
 			TagManagement.Instance.Value.Register(tagValue, this);
+		}
+
+		static string Hash(string input)
+		{
+			var hash = (new SHA1Managed()).ComputeHash(Encoding.UTF8.GetBytes(input));
+			return string.Join("", hash.Select(b => b.ToString("x2")).ToArray()).ToUpper();
+		}
+
+		static ImageSource QRify(string url)
+		{
+			var write = new BarcodeWriter();
+			write.Format = BarcodeFormat.QR_CODE;
+			var wb = write.Write(url);
+			return ConvertBitmap(wb);
+		}
+
+		static BitmapImage ConvertBitmap(System.Drawing.Bitmap bitmap)
+		{
+			MemoryStream ms = new MemoryStream();
+			bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+			BitmapImage image = new BitmapImage();
+			image.BeginInit();
+			ms.Seek(0, SeekOrigin.Begin);
+			image.StreamSource = ms;
+			image.EndInit();
+			return image;
 		}
 	}
 }
