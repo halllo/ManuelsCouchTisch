@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
@@ -221,10 +222,12 @@ namespace ManuelsCouchTisch
 			if (Text == null || FontFamily == null || FontWeight == null || FontStyle == null)
 				return;
 
-			_textBlocks = new TextBlock[Text.Length];
-			_segmentLengths = new double[Text.Length];
+			var textSymbols = Symbols(Text).ToArray();
 
-			for (int i = 0; i < Text.Length; i++)
+			_textBlocks = new TextBlock[textSymbols.Length];
+			_segmentLengths = new double[textSymbols.Length];
+
+			for (int i = 0; i < textSymbols.Length; i++)
 			{
 				TextBlock t = new TextBlock();
 				t.FontSize = this.FontSize;
@@ -235,12 +238,12 @@ namespace ManuelsCouchTisch
 
 				if (Inverted)
 				{
-					t.Text = new String(Text[i], 1);
+					t.Text = textSymbols[i];
 					t.LayoutTransform = new RotateTransform(angle: 0);
 				}
 				else
 				{
-					t.Text = new String(Text[(Text.Length - 1) - i], 1);
+					t.Text = textSymbols[(textSymbols.Length - 1) - i];
 					t.LayoutTransform = new RotateTransform(angle: 180);
 				}
 
@@ -249,8 +252,6 @@ namespace ManuelsCouchTisch
 
 				_textBlocks[i] = t;
 				_segmentLengths[i] = t.DesiredSize.Width;
-
-
 			}
 		}
 
@@ -422,6 +423,22 @@ namespace ManuelsCouchTisch
 				grp.Children.Add(scale);
 				grp.Children.Add(translate);
 				TextPath.Transform = grp;
+			}
+		}
+
+		static IEnumerable<string> Symbols(string s)
+		{
+			for (int i = 0; i < s.Length; i++)
+			{
+				if (i + 1 < s.Length && char.IsSurrogatePair(s[i], s[i + 1]))
+				{
+					yield return new string(new[] { s[i], s[i + 1] });
+					i++;
+				}
+				else
+				{
+					yield return s[i].ToString();
+				}
 			}
 		}
 	}
