@@ -6,40 +6,6 @@
 	xmlns:local="clr-namespace:ManuelsCouchTisch"
 	Title="ManuelsCouchTisch">
 
-	<Grid Background="Transparent">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition Width="*"/>
-		</Grid.ColumnDefinitions>
-
-		<Grid Grid.Column="0">
-			<TextBlock Text="Manuels Couch Tisch V1" TextWrapping="NoWrap" Foreground="Magenta" Margin="10,20,0,0">
-				<TextBlock.LayoutTransform >
-					<TransformGroup>
-						<ScaleTransform/>
-						<SkewTransform/>
-						<RotateTransform Angle="90"/>
-						<TranslateTransform/>
-					</TransformGroup>
-				</TextBlock.LayoutTransform>
-			</TextBlock>
-		</Grid>
-
-		<Grid Grid.Column="1">
-			<s:TagVisualizer Name="Visualizer" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-				<s:TagVisualizer.Definitions>
-					<local:AllTagsVisualizationDefinition TagRemovedBehavior="Fade" Source="TagVisual.xaml"/>
-				</s:TagVisualizer.Definitions>
-
-				<s:ScatterView HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-					
-					<local:NamenUndFarbenView x:Name="namenUndFarben"/>
-					
-					<local:KonsoleView x:Name="konsole"/>
-
-				</s:ScatterView>
-			</s:TagVisualizer>
-		</Grid>
-
-	</Grid>
+	<local:Area/>
+	
 </s:SurfaceWindow>

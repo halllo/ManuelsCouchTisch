@@ -86,6 +86,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="..\ManuelsCouchTisch\Area.xaml">
+      <Link>Area.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\ManuelsCouchTisch\ColorChooser.xaml">
       <Link>ColorChooser.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
@@ -110,23 +115,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="..\ManuelsCouchTisch\Area.xaml.cs">
+      <Link>Area.xaml.cs</Link>
+      <DependentUpon>Area.xaml</DependentUpon>
+    </Compile>
     <Compile Include="..\ManuelsCouchTisch\ColorChooser.xaml.cs">
       <Link>ColorChooser.xaml.cs</Link>
+      <DependentUpon>ColorChooser.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\GastGedaechtnis.cs">
       <Link>GastGedaechtnis.cs</Link>
     </Compile>
-    <Compile Include="..\ManuelsCouchTisch\ImageInfo.cs">
-      <Link>ImageInfo.cs</Link>
-    </Compile>
     <Compile Include="..\ManuelsCouchTisch\KonsoleView.xaml.cs">
       <Link>KonsoleView.xaml.cs</Link>
+      <DependentUpon>KonsoleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\MBusClient.cs">
       <Link>MBusClient.cs</Link>
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\NamenUndFarbenView.xaml.cs">
       <Link>NamenUndFarbenView.xaml.cs</Link>
+      <DependentUpon>NamenUndFarbenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\Properties\Settings.Designer.cs">
       <Link>Properties\Settings.Designer.cs</Link>
@@ -136,9 +145,13 @@
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\TagVisual.xaml.cs">
       <Link>TagVisual.xaml.cs</Link>
+      <DependentUpon>TagVisual.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\TextOnAPath.cs">
       <Link>TextOnAPath.cs</Link>
+    </Compile>
+    <Compile Include="..\ManuelsCouchTisch\TrackingCanvas.cs">
+      <Link>TrackingCanvas.cs</Link>
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\ViewModel.cs">
       <Link>ViewModel.cs</Link>
@@ -151,8 +164,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Object.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Object.xaml.cs">
+      <DependentUpon>Object.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

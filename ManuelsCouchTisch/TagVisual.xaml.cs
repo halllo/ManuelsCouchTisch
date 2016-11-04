@@ -18,13 +18,7 @@ namespace ManuelsCouchTisch
 		public TagVisual()
 		{
 			InitializeComponent();
-
 			DataContext = ViewModel = new TagVisualModel();
-
-			Loaded += (s, e) =>
-			{
-				ViewModel.TagAvailable(VisualizedTag);
-			};
 		}
 	}
 
@@ -55,9 +49,9 @@ namespace ManuelsCouchTisch
 			Konsole = new Command(o => { TagManagement.Instance.Value.RaiseShowKonsole(); });
 		}
 
-		public void TagAvailable(TagData tag)
+		public void TagAvailable(long tag)
 		{
-			var tagValue = tag.Value % 6;
+			var tagValue = tag % 6;
 
 			MasterMenuVisible = tagValue == 0 ? Visibility.Visible : Visibility.Collapsed;
 			QrCode = QRify("https://labs.neokc.de/gast?id=" + Hash((tagValue + 1) + " on " + DateTime.Today.ToString("ddMMyyyy")));

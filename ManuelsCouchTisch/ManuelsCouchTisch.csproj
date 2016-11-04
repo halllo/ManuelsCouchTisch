@@ -92,6 +92,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Area.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ColorChooser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,16 +116,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AllTagsVisualizationDefinition.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Area.xaml.cs">
+      <DependentUpon>Area.xaml</DependentUpon>
     </Compile>
     <Compile Include="ColorChooser.xaml.cs">
       <DependentUpon>ColorChooser.xaml</DependentUpon>
     </Compile>
     <Compile Include="GastGedaechtnis.cs" />
-    <Compile Include="ImageInfo.cs" />
     <Compile Include="MBusClient.cs" />
     <Compile Include="KonsoleView.xaml.cs">
       <DependentUpon>KonsoleView.xaml</DependentUpon>
@@ -131,6 +136,7 @@
     </Compile>
     <Compile Include="TagManagement.cs" />
     <Compile Include="TextOnAPath.cs" />
+    <Compile Include="TrackingCanvas.cs" />
     <Compile Include="ViewModel.cs" />
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>

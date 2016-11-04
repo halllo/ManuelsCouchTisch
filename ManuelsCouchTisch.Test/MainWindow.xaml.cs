@@ -7,46 +7,33 @@ namespace ManuelsCouchTisch.Test
 		public MainWindow()
 		{
 			InitializeComponent();
-
-
-
-
-
-
-
-			var setTags = new RoutedEventHandler((s, e) =>
+			
+			Loaded += (s, e) =>
 			{
-				tag00.ViewModel.TagAvailable(new Microsoft.Surface.Presentation.Input.TagData(0, 0, 0, 0));
-				tag01.ViewModel.TagAvailable(new Microsoft.Surface.Presentation.Input.TagData(0, 0, 0, 1));
-				tag08.ViewModel.TagAvailable(new Microsoft.Surface.Presentation.Input.TagData(0, 0, 0, 8));//tag02
+				TagManagement.Instance.Value.ConnectToMBus("http://localhost:8000/signalr");
+
+				area.ScatterViewOverlay.Items.Add(Tag(value: 0));
+				area.ScatterViewOverlay.Items.Add(Tag(value: 3));
+				area.ScatterViewOverlay.Items.Add(Ding(majorAxis: 100));
+				area.ScatterViewOverlay.Items.Add(Ding(majorAxis: 50));
+			};
+		}
+
+		Object Tag(long value)
+		{
+			return new Object(new ObjectViewModel(area.TrackingCanvasLayer)
+			{
+				IsTag = true,
+				TagValue = value
 			});
+		}
 
-			tag00.Loaded += setTags;
-			tag01.Loaded += setTags;
-			tag08.Loaded += setTags;
-
-
-
-
-
-
-			TagManagement.Instance.Value.OnShowNamenUndFarben += () =>
+		Object Ding(double majorAxis, double minorAxis = 0)
+		{
+			return new Object(new ObjectViewModel(area.TrackingCanvasLayer)
 			{
-				namenUndFarben.ViewModel.WindowVisible = Visibility.Visible;
-			};
-			namenUndFarben.ViewModel.WindowVisible = Visibility.Collapsed;
-
-			TagManagement.Instance.Value.OnShowKonsole += () =>
-			{
-				konsole.ViewModel.WindowVisible = Visibility.Visible;
-			};
-			konsole.ViewModel.WindowVisible = Visibility.Collapsed;
-
-
-
-
-
-			Loaded += (s, e) => TagManagement.Instance.Value.ConnectToMBus("http://localhost:8000/signalr");
+				Size = new Size(majorAxis, minorAxis)
+			});
 		}
 	}
 }

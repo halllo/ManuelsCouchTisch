@@ -5,45 +5,6 @@
 		xmlns:local="clr-namespace:ManuelsCouchTisch"
 		Title="ManuelsCouchTisch.Test" Height="800" Width="1024">
 
-	<Grid Background="Black">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition Width="*"/>
-		</Grid.ColumnDefinitions>
+	<local:Area x:Name="area"/>
 
-		<Grid Grid.Column="0">
-			<TextBlock Text="Manuels Couch Tisch V1" TextWrapping="NoWrap" Foreground="Magenta" Margin="10,20,0,0">
-				<TextBlock.LayoutTransform >
-					<TransformGroup>
-						<ScaleTransform/>
-						<SkewTransform/>
-						<RotateTransform Angle="90"/>
-						<TranslateTransform/>
-					</TransformGroup>
-				</TextBlock.LayoutTransform>
-			</TextBlock>
-		</Grid>
-
-		<Grid Grid.Column="1">
-			<s:ScatterView HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-				
-				<local:NamenUndFarbenView x:Name="namenUndFarben"/>
-
-				<local:KonsoleView x:Name="konsole"/>
-
-				<s:ScatterViewItem Width="200" Height="200" Background="Transparent">
-					<local:TagVisual x:Name="tag00"/>
-				</s:ScatterViewItem>
-
-				<s:ScatterViewItem Width="200" Height="200" Background="Transparent">
-					<local:TagVisual x:Name="tag01"/>
-				</s:ScatterViewItem>
-				
-				<s:ScatterViewItem Width="200" Height="200" Background="Transparent">
-					<local:TagVisual x:Name="tag08"/>
-				</s:ScatterViewItem>
-
-			</s:ScatterView>
-		</Grid>
-	</Grid>
 </Window>
