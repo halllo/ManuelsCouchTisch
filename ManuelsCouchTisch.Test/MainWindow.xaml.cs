@@ -10,13 +10,15 @@ namespace ManuelsCouchTisch.Test
 			
 			Loaded += (s, e) =>
 			{
-				TagManagement.Instance.Value.ConnectToMBus("http://localhost:8000/signalr");
+				TagManagement.Instance.Value.ConnectToMBus(/*"http://localhost:8000/signalr"*/);
 
 				area.ScatterViewOverlay.Items.Add(Tag(value: 0));
 				area.ScatterViewOverlay.Items.Add(Tag(value: 3));
 				area.ScatterViewOverlay.Items.Add(Ding(majorAxis: 100));
 				area.ScatterViewOverlay.Items.Add(Ding(majorAxis: 50));
 			};
+
+			((Area)Content).TrackingCanvasLayer.LogTrackedObjects = true;
 		}
 
 		Object Tag(long value)

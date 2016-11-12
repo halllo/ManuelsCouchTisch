@@ -114,9 +114,11 @@ namespace ManuelsCouchTisch
 			TouchMove += Canvas_TouchMove;
 			TouchUp += Canvas_TouchUp;
 			Children.Add(_Log);
+			LogTrackedObjects = true;
 		}
 
 		public bool ObserveTagOrientation { get; set; }
+		public bool LogTrackedObjects { get; set; }
 		public event Action<ITrackedBlob> StartTracking;
 		private TextBlock _Log = new TextBlock { Foreground = Brushes.White };
 		private List<TrackedBlob> _Blobs = null;
@@ -220,16 +222,19 @@ namespace ManuelsCouchTisch
 		private void UpdateLog()
 		{
 			_Log.Text = "";
-			foreach (var blob in _Blobs)
+			if (LogTrackedObjects)
 			{
-				var axis = blob.Axis;
-				var center = blob.Center;
-				var tag = blob.TagValue;
+				foreach (var blob in _Blobs)
+				{
+					var axis = blob.Axis;
+					var center = blob.Center;
+					var tag = blob.TagValue;
 
-				_Log.Text = _Log.Text + "\n\tTrackedBlob(" + blob.Id + ") : "
-					+ "Axis(" + axis.MajorAxis + "; " + axis.MinorAxis + "; " + axis.Orientation + "); "
-					+ "Pos(" + center.X + "; " + center.Y + "); "
-					+ "Tag(" + tag + ");";
+					_Log.Text = _Log.Text + "\n\tTrackedBlob(" + blob.Id + ") : "
+						+ "Axis(" + axis.MajorAxis + "; " + axis.MinorAxis + "; " + axis.Orientation + "); "
+						+ "Pos(" + center.X + "; " + center.Y + "); "
+						+ "Tag(" + tag + ");";
+				}
 			}
 		}
 

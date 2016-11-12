@@ -13,6 +13,8 @@ namespace ManuelsCouchTisch
 			ApplicationServices.InactivityTimeoutOccurring += ApplicationServices_InactivityTimeoutOccurring;
 
 			Loaded += (s, e) => TagManagement.Instance.Value.ConnectToMBus();
+
+			((Area)Content).TrackingCanvasLayer.LogTrackedObjects = false;
 		}
 
 		protected override void OnClosed(EventArgs e)
