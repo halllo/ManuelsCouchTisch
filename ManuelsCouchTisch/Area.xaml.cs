@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace ManuelsCouchTisch
@@ -24,7 +23,16 @@ namespace ManuelsCouchTisch
 				konsole.ViewModel.WindowVisible = System.Windows.Visibility.Visible;
 			};
 			konsole.ViewModel.WindowVisible = System.Windows.Visibility.Collapsed;
+
+			TagManagement.Instance.Value.OnNewImage += pixels =>
+			{
+				Dispatcher.BeginInvoke(new System.Action(() =>
+				{
+					ScatterViewOverlay.Items.Add(new ImageView(pixels));
+				}));
+			};
 		}
+
 
 
 

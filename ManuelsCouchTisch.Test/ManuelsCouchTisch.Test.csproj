@@ -96,6 +96,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="..\ManuelsCouchTisch\ImageView.xaml">
+      <Link>ImageView.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\ManuelsCouchTisch\KonsoleView.xaml">
       <Link>KonsoleView.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +130,10 @@
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\GastGedaechtnis.cs">
       <Link>GastGedaechtnis.cs</Link>
+    </Compile>
+    <Compile Include="..\ManuelsCouchTisch\ImageView.xaml.cs">
+      <Link>ImageView.xaml.cs</Link>
+      <DependentUpon>ImageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\ManuelsCouchTisch\KonsoleView.xaml.cs">
       <Link>KonsoleView.xaml.cs</Link>

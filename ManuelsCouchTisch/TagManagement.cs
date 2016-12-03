@@ -30,12 +30,12 @@ namespace ManuelsCouchTisch
 
 		public Dictionary<long, Data> Tags = new Dictionary<long, Data>
 		{
-			{ 0, new Data { Name = "Manuel",	Color = AllColors["blau"],		QrCodeVisible=Visibility.Visible } },
-			{ 1, new Data { Name = "1",			Color = AllColors["grün"],		QrCodeVisible=Visibility.Visible } },
-			{ 2, new Data { Name = "2",			Color = AllColors["rot"],		QrCodeVisible=Visibility.Visible } },
-			{ 3, new Data { Name = "3",			Color = AllColors["lime"],		QrCodeVisible=Visibility.Visible } },
-			{ 4, new Data { Name = "4",			Color = AllColors["magenta"],	QrCodeVisible=Visibility.Visible } },
-			{ 5, new Data { Name = "5",			Color = AllColors["grau"],		QrCodeVisible=Visibility.Visible } },
+			{ 0, new Data { Name = "Manuel",    Color = AllColors["blau"],      QrCodeVisible=Visibility.Visible } },
+			{ 1, new Data { Name = "1",         Color = AllColors["grün"],      QrCodeVisible=Visibility.Visible } },
+			{ 2, new Data { Name = "2",         Color = AllColors["rot"],       QrCodeVisible=Visibility.Visible } },
+			{ 3, new Data { Name = "3",         Color = AllColors["lime"],      QrCodeVisible=Visibility.Visible } },
+			{ 4, new Data { Name = "4",         Color = AllColors["magenta"],   QrCodeVisible=Visibility.Visible } },
+			{ 5, new Data { Name = "5",         Color = AllColors["grau"],      QrCodeVisible=Visibility.Visible } },
 		};
 
 		public MBusClient MBus = new MBusClient("couchtisch");
@@ -65,6 +65,13 @@ namespace ManuelsCouchTisch
 			if (h != null) h(log);
 		}
 
+		public event Action<byte[]> OnNewImage;
+		public void RaiseNewImage(byte[] image)
+		{
+			var h = OnNewImage;
+			if (h != null) h(image);
+		}
+
 		public event Action OnShowNamenUndFarben;
 		public void RaiseShowNamenUndFarben()
 		{
@@ -79,7 +86,7 @@ namespace ManuelsCouchTisch
 			if (h != null) h();
 		}
 
-		public void ConnectToMBus(string url = "http://mbus.de:8000/signalr")
+		public void ConnectToMBus(string url = "http://mbusrelay.azurewebsites.net/signalr")
 		{
 			_gedaechtnis.Restore();
 			RaiseTagsChangedRemotly();
@@ -108,36 +115,52 @@ namespace ManuelsCouchTisch
 				return;
 			}
 
-			var messageItems = message.Split(new[] { ";" }, StringSplitOptions.None);
-			if (messageItems[0] == "couchtisch")
+			if (message.StartsWith("<b"))
 			{
-				RaiseLog(clientname + ": " + message);
-				if (messageItems.Length == 4)
+				try
 				{
-					try
+					var image = message.Substring(15);
+					var pixels = Convert.FromBase64String(image);
+					RaiseNewImage(pixels);
+				}
+				catch (Exception e)
+				{
+					RaiseLog(e.Message);
+				}
+			}
+			else
+			{
+				var messageItems = message.Split(new[] { ";" }, StringSplitOptions.None);
+				if (messageItems[0] == "couchtisch")
+				{
+					RaiseLog(clientname + ": " + message);
+					if (messageItems.Length == 4)
 					{
-						var tag = long.Parse(messageItems[1]);
-						var name = messageItems[2];
-						var color = AllColors[messageItems[3]];
-
-						var tagData = Tags[tag];
-						tagData.Name = name;
-						tagData.Color = color;
-						tagData.QrCodeVisible = Visibility.Collapsed;
-						_gedaechtnis.Store();
-						RaiseTagsChangedRemotly();
-
-						var viewModel = viewModels[tag];
-						viewModel.Dispatch(() =>
+						try
 						{
-							viewModel.Name = name;
-							viewModel.Color = color;
-							viewModel.QrCodeVisible = Visibility.Collapsed;
-						});
-					}
-					catch (Exception e)
-					{
-						RaiseLog(e.Message);
+							var tag = long.Parse(messageItems[1]);
+							var name = messageItems[2];
+							var color = AllColors[messageItems[3]];
+
+							var tagData = Tags[tag];
+							tagData.Name = name;
+							tagData.Color = color;
+							tagData.QrCodeVisible = Visibility.Collapsed;
+							_gedaechtnis.Store();
+							RaiseTagsChangedRemotly();
+
+							var viewModel = viewModels[tag];
+							viewModel.Dispatch(() =>
+							{
+								viewModel.Name = name;
+								viewModel.Color = color;
+								viewModel.QrCodeVisible = Visibility.Collapsed;
+							});
+						}
+						catch (Exception e)
+						{
+							RaiseLog(e.Message);
+						}
 					}
 				}
 			}
