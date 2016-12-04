@@ -14,6 +14,8 @@ namespace ManuelsCouchTisch
 
 		public ImageView(string imageAsBase64) : this()
 		{
+			Visibility = System.Windows.Visibility.Collapsed;
+
 			var pixels = Convert.FromBase64String(imageAsBase64);
 			Bild.Source = ConvertImage(pixels);
 		}

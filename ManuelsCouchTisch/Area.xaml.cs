@@ -1,4 +1,6 @@
-﻿using System.Windows.Media;
+﻿using System.Linq;
+using System.Windows;
+using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace ManuelsCouchTisch
@@ -14,21 +16,40 @@ namespace ManuelsCouchTisch
 
 			TagManagement.Instance.Value.OnShowNamenUndFarben += () =>
 			{
-				namenUndFarben.ViewModel.WindowVisible = System.Windows.Visibility.Visible;
+				namenUndFarben.ViewModel.WindowVisible = Visibility.Visible;
 			};
-			namenUndFarben.ViewModel.WindowVisible = System.Windows.Visibility.Collapsed;
+			namenUndFarben.ViewModel.WindowVisible = Visibility.Collapsed;
 
 			TagManagement.Instance.Value.OnShowKonsole += () =>
 			{
-				konsole.ViewModel.WindowVisible = System.Windows.Visibility.Visible;
+				konsole.ViewModel.WindowVisible = Visibility.Visible;
 			};
-			konsole.ViewModel.WindowVisible = System.Windows.Visibility.Collapsed;
+			konsole.ViewModel.WindowVisible = Visibility.Collapsed;
 
 			RemoteZentrale.Instance.Value.OnNewImage += imageAsBase64 =>
 			{
 				Dispatcher.BeginInvoke(new System.Action(() =>
 				{
 					ScatterViewOverlay.Items.Add(new ImageView(imageAsBase64));
+				}));
+			};
+
+			RemoteZentrale.Instance.Value.OnConfirmImages += () =>
+			{
+				Dispatcher.BeginInvoke(new System.Action(() =>
+				{
+					var smartphone = TrackingCanvasLayer.TrackedBlobs.FirstOrDefault(b => b.Description == "smartphone?");
+					if (smartphone != null)
+					{
+						var smartphonePosition = smartphone.Center;
+						var imagePosition = new Point(smartphonePosition.X + 200, smartphonePosition.Y);
+						var imageViews = ScatterViewOverlay.Items.OfType<ImageView>();
+						foreach (var imageView in imageViews)
+						{
+							imageView.Center = imagePosition;
+							imageView.Visibility = Visibility.Visible;
+						}
+					}
 				}));
 			};
 		}
@@ -53,12 +74,13 @@ namespace ManuelsCouchTisch
 				var majorAxis = trackedBlob.Axis.MajorAxis;
 				if (160 >= majorAxis && majorAxis >= 90)
 				{
+					trackedBlob.Description = "smartphone?";
 					trackedBlob.Display(new Ellipse
 					{
 						Width = 350,
 						Height = 350,
+						Stroke = new SolidColorBrush(Colors.Orange),
 						StrokeThickness = 2,
-						Stroke = new SolidColorBrush(Colors.Orange)
 					});
 				}
 				else

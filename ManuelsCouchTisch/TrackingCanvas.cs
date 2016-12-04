@@ -17,6 +17,7 @@ namespace ManuelsCouchTisch
 			EllipseData Axis { get; }
 			bool IsTag { get; }
 			long TagValue { get; }
+			string Description { get; set; }
 			bool HasDisplay { get; }
 			void Display(FrameworkElement element);
 
@@ -36,6 +37,7 @@ namespace ManuelsCouchTisch
 			public abstract bool IsTag { get; }
 			public abstract long TagValue { get; }
 
+			public string Description { get; set; }
 			public TrackingCanvas Container { get; private set; }
 			public bool IsExpired { get; set; }
 			public FrameworkElement Visualization { get; set; }
@@ -120,6 +122,7 @@ namespace ManuelsCouchTisch
 		public bool ObserveTagOrientation { get; set; }
 		public bool LogTrackedObjects { get; set; }
 		public event Action<ITrackedBlob> StartTracking;
+		public IEnumerable<ITrackedBlob> TrackedBlobs { get { return _Blobs; } }
 		private TextBlock _Log = new TextBlock { Foreground = Brushes.White };
 		private List<TrackedBlob> _Blobs = null;
 
