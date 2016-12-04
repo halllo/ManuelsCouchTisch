@@ -149,6 +149,9 @@
     <Compile Include="..\ManuelsCouchTisch\Properties\Settings.Designer.cs">
       <Link>Properties\Settings.Designer.cs</Link>
     </Compile>
+    <Compile Include="..\ManuelsCouchTisch\RemoteZentrale.cs">
+      <Link>RemoteZentrale.cs</Link>
+    </Compile>
     <Compile Include="..\ManuelsCouchTisch\TagManagement.cs">
       <Link>TagManagement.cs</Link>
     </Compile>

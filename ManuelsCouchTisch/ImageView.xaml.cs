@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Windows.Media.Imaging;
+using Microsoft.Surface.Presentation.Controls;
 
 namespace ManuelsCouchTisch
 {
@@ -10,8 +12,9 @@ namespace ManuelsCouchTisch
 			InitializeComponent();
 		}
 
-		public ImageView(byte[] pixels) : this()
+		public ImageView(string imageAsBase64) : this()
 		{
+			var pixels = Convert.FromBase64String(imageAsBase64);
 			Bild.Source = ConvertImage(pixels);
 		}
 
@@ -31,7 +34,9 @@ namespace ManuelsCouchTisch
 		private void CloseClick(object sender, System.Windows.RoutedEventArgs e)
 		{
 			Bild.Source = null;
-			Visibility = System.Windows.Visibility.Collapsed;
+
+			var scatterView = Parent as ScatterView;
+			scatterView.Items.Remove(this);
 		}
 	}
 }

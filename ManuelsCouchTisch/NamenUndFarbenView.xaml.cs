@@ -73,7 +73,7 @@ namespace ManuelsCouchTisch
 				QrCodeVisible5 = TagManagement.Instance.Value.Tags[5].QrCodeVisible == Visibility.Visible;
 			});
 			refreshTags();
-			TagManagement.Instance.Value.OnTagsChangedRemotly += refreshTags;
+			TagManagement.Instance.Value.OnTagsChanged += refreshTags;
 
 			Close = new Command(o => { WindowVisible = Visibility.Collapsed; });
 			Save = new Command(o =>

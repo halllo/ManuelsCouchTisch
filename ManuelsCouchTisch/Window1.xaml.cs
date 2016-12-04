@@ -12,7 +12,7 @@ namespace ManuelsCouchTisch
 
 			ApplicationServices.InactivityTimeoutOccurring += ApplicationServices_InactivityTimeoutOccurring;
 
-			Loaded += (s, e) => TagManagement.Instance.Value.ConnectToMBus();
+			Loaded += (s, e) => RemoteZentrale.Instance.Value.ConnectToMBus();
 
 			((Area)Content).TrackingCanvasLayer.LogTrackedObjects = false;
 		}

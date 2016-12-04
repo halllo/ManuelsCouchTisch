@@ -27,7 +27,7 @@ namespace ManuelsCouchTisch
 		{
 			Close = new Command(o => { WindowVisible = Visibility.Collapsed; });
 			KonsoleItems = new ObservableCollection<string>();
-			TagManagement.Instance.Value.OnLog += Value_OnLog;
+			RemoteZentrale.Instance.Value.OnLog += Value_OnLog;
 		}
 
 		private void Value_OnLog(string log)

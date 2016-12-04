@@ -24,11 +24,11 @@ namespace ManuelsCouchTisch
 			};
 			konsole.ViewModel.WindowVisible = System.Windows.Visibility.Collapsed;
 
-			TagManagement.Instance.Value.OnNewImage += pixels =>
+			RemoteZentrale.Instance.Value.OnNewImage += imageAsBase64 =>
 			{
 				Dispatcher.BeginInvoke(new System.Action(() =>
 				{
-					ScatterViewOverlay.Items.Add(new ImageView(pixels));
+					ScatterViewOverlay.Items.Add(new ImageView(imageAsBase64));
 				}));
 			};
 		}

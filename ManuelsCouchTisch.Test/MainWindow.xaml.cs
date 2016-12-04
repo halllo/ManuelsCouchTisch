@@ -10,7 +10,7 @@ namespace ManuelsCouchTisch.Test
 			
 			Loaded += (s, e) =>
 			{
-				TagManagement.Instance.Value.ConnectToMBus(/*"http://localhost:8000/signalr"*/);
+				RemoteZentrale.Instance.Value.ConnectToMBus(/*"http://localhost:8000/signalr"*/);
 
 				area.ScatterViewOverlay.Items.Add(Tag(value: 0));
 				area.ScatterViewOverlay.Items.Add(Tag(value: 3));

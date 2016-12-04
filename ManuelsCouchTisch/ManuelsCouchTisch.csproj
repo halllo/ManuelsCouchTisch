@@ -141,6 +141,7 @@
     <Compile Include="NamenUndFarbenView.xaml.cs">
       <DependentUpon>NamenUndFarbenView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RemoteZentrale.cs" />
     <Compile Include="TagManagement.cs" />
     <Compile Include="TextOnAPath.cs" />
     <Compile Include="TrackingCanvas.cs" />

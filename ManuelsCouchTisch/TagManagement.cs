@@ -14,10 +14,6 @@ namespace ManuelsCouchTisch
 			public Visibility QrCodeVisible { get; set; }
 		}
 
-
-		public readonly static Lazy<TagManagement> Instance = new Lazy<TagManagement>(() => new TagManagement());
-
-
 		public static readonly Dictionary<string, Brush> AllColors = new Dictionary<string, Brush>
 		{
 			{ "rot", Brushes.Red },
@@ -38,38 +34,23 @@ namespace ManuelsCouchTisch
 			{ 5, new Data { Name = "5",         Color = AllColors["grau"],      QrCodeVisible=Visibility.Visible } },
 		};
 
-		public MBusClient MBus = new MBusClient("couchtisch");
-
 		Dictionary<long, TagVisualModel> viewModels = new Dictionary<long, TagVisualModel>();
 
 		private GastGedaechtnis _gedaechtnis;
 
 
-		public TagManagement()
+		public readonly static Lazy<TagManagement> Instance = new Lazy<TagManagement>(() => new TagManagement());
+		private TagManagement()
 		{
 			_gedaechtnis = new GastGedaechtnis(Tags, AllColors);
 		}
 
 
-		public event Action OnTagsChangedRemotly;
-		public void RaiseTagsChangedRemotly()
+		public event Action OnTagsChanged;
+		public void RaiseTagsChanged()
 		{
-			var h = OnTagsChangedRemotly;
+			var h = OnTagsChanged;
 			if (h != null) h();
-		}
-
-		public event Action<string> OnLog;
-		public void RaiseLog(string log)
-		{
-			var h = OnLog;
-			if (h != null) h(log);
-		}
-
-		public event Action<byte[]> OnNewImage;
-		public void RaiseNewImage(byte[] image)
-		{
-			var h = OnNewImage;
-			if (h != null) h(image);
 		}
 
 		public event Action OnShowNamenUndFarben;
@@ -86,102 +67,48 @@ namespace ManuelsCouchTisch
 			if (h != null) h();
 		}
 
-		public void ConnectToMBus(string url = "http://mbusrelay.azurewebsites.net/signalr")
+		public void Connect()
 		{
 			_gedaechtnis.Restore();
-			RaiseTagsChangedRemotly();
-
-			MBus.OnDisconnect += Mbus_OnDisconnect;
-			MBus.On += Mbus_On;
-			try
-			{
-				RaiseLog("connecting to " + url);
-				MBus.Connect(url).Wait();
-				RaiseLog("connected");
-				MBus.Emit("hallo");
-			}
-			catch (AggregateException e)
-			{
-				RaiseLog("cannot connect: " + e.InnerException.Message);
-			}
+			RaiseTagsChanged();
 		}
 
-		private void Mbus_On(string clientname, string message)
+		public void UpdateTags(string message)
 		{
-			if (clientname.StartsWith("gastmanager.app") && message == "hallo")
+			var messageItems = message.Split(new[] { ";" }, StringSplitOptions.None);
+			if (messageItems.Length == 4)
 			{
-				RaiseLog(clientname + ": " + message);
-				MBusEmitTags();
-				return;
-			}
+				var tag = long.Parse(messageItems[1]);
+				var name = messageItems[2];
+				var color = AllColors[messageItems[3]];
 
-			if (message.StartsWith("<b"))
-			{
-				try
-				{
-					var image = message.Substring(15);
-					var pixels = Convert.FromBase64String(image);
-					RaiseNewImage(pixels);
-				}
-				catch (Exception e)
-				{
-					RaiseLog(e.Message);
-				}
-			}
-			else
-			{
-				var messageItems = message.Split(new[] { ";" }, StringSplitOptions.None);
-				if (messageItems[0] == "couchtisch")
-				{
-					RaiseLog(clientname + ": " + message);
-					if (messageItems.Length == 4)
-					{
-						try
-						{
-							var tag = long.Parse(messageItems[1]);
-							var name = messageItems[2];
-							var color = AllColors[messageItems[3]];
+				var tagData = Tags[tag];
+				tagData.Name = name;
+				tagData.Color = color;
+				tagData.QrCodeVisible = Visibility.Collapsed;
+				_gedaechtnis.Store();
+				RaiseTagsChanged();
 
-							var tagData = Tags[tag];
-							tagData.Name = name;
-							tagData.Color = color;
-							tagData.QrCodeVisible = Visibility.Collapsed;
-							_gedaechtnis.Store();
-							RaiseTagsChangedRemotly();
-
-							var viewModel = viewModels[tag];
-							viewModel.Dispatch(() =>
-							{
-								viewModel.Name = name;
-								viewModel.Color = color;
-								viewModel.QrCodeVisible = Visibility.Collapsed;
-							});
-						}
-						catch (Exception e)
-						{
-							RaiseLog(e.Message);
-						}
-					}
-				}
+				var viewModel = viewModels[tag];
+				viewModel.Dispatch(() =>
+				{
+					viewModel.Name = name;
+					viewModel.Color = color;
+					viewModel.QrCodeVisible = Visibility.Collapsed;
+				});
 			}
 		}
 
-		private void MBusEmitTags()
+		public void MBusEmitTags()
 		{
 			var tagDump = _gedaechtnis.AsTagDump();
 
-			if (MBus.ConnectionId != null)
+			var mbus = RemoteZentrale.Instance.Value.MBus;
+			if (mbus.ConnectionId != null)
 			{
-				MBus.Emit(tagDump);
+				mbus.Emit(tagDump);
 			}
 		}
-
-		private void Mbus_OnDisconnect()
-		{
-			RaiseLog("disconnect");
-		}
-
-
 
 		public void Register(long tag, TagVisualModel viewModel)
 		{
